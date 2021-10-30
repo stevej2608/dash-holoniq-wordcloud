@@ -1,0 +1,11 @@
+include dash_tagcloud/dash_tagcloud.min.js
+include dash_tagcloud/dash_tagcloud.min.js.map
+include dash_tagcloud/async-*.js
+include dash_tagcloud/async-*.js.map
+include dash_tagcloud/*-shared.js
+include dash_tagcloud/*-shared.js.map
+include dash_tagcloud/metadata.json
+include dash_tagcloud/package-info.json
+include README.md
+include LICENSE
+include package.json
