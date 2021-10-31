@@ -10,9 +10,12 @@ import TagCloud from 'react-tag-cloud';
 
 export default class DashTagcloud extends Component {
   render() {
-    const {label, id, loading_state, setProps,  ...tagcloud_props} = this.props
+    const {label, id, loading_state, setProps, children, ...tagcloud_props} = this.props
+    const tag_children = React.Children.map(children, (child => <div>{React.cloneElement(child)}</div>))
     return (
-      <TagCloud className='tag-cloud' {...tagcloud_props}/>
+      <TagCloud className='tag-cloud' {...tagcloud_props} rotate={60}>
+        {tag_children}
+      </TagCloud>
     )
   }
 }
