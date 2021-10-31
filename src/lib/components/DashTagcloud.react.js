@@ -1,61 +1,64 @@
 import React, {Component} from 'react';
+import randomColor from 'randomcolor';
 import PropTypes from 'prop-types';
+
+import TagCloud from 'react-tag-cloud';
 
 /**
  * ExampleComponent is an example component.
- * It takes a property, `label`, and
- * displays it.
- * It renders an input with the property `value`
- * which is editable by the user.
  */
-export default class DashTagcloud extends Component {
-    render() {
-        const {id, label, setProps, value} = this.props;
 
-        return (
-            <div id={id}>
-                ExampleComponent: {label}&nbsp;
-                <input
-                    value={value}
-                    onChange={
-                        /*
-                         * Send the new value to the parent component.
-                         * setProps is a prop that is automatically supplied
-                         * by dash's front-end ("dash-renderer").
-                         * In a Dash app, this will update the component's
-                         * props and send the data back to the Python Dash
-                         * app server if a callback uses the modified prop as
-                         * Input or State.
-                         */
-                        e => setProps({ value: e.target.value })
-                    }
-                />
-            </div>
-        );
-    }
+export default class DashTagcloud extends Component {
+  render() {
+    const {label, id, loading_state, setProps,  ...tagcloud_props} = this.props
+    return (
+      <TagCloud className='tag-cloud' {...tagcloud_props}/>
+    )
+  }
 }
 
 DashTagcloud.defaultProps = {};
 
 DashTagcloud.propTypes = {
-    /**
-     * The ID used to identify this component in Dash callbacks.
-     */
-    id: PropTypes.string,
+  /**
+    * The ID used to identify this component in Dash callbacks.
+    */
+  id: PropTypes.string,
 
-    /**
-     * A label that will be printed when this component is rendered.
-     */
-    label: PropTypes.string.isRequired,
+  /**
+   * The children of this component
+   */
+  children: PropTypes.node,
 
-    /**
-     * The value displayed in the input.
-     */
-    value: PropTypes.string,
+  /**
+   * Defines CSS styles which will override styles previously set.
+   */
+  style: PropTypes.object,
 
-    /**
-     * Dash-assigned callback that should be called to report property changes
-     * to Dash, to make them available for callbacks.
-     */
-    setProps: PropTypes.func
+  /**
+   * Rotation in degrees
+   */
+
+  rotate: PropTypes.number,
+
+  /**
+   * Spiral 'archimedean'| 'rectangular'
+   */
+
+  spiral: PropTypes.string,
+
+  /**
+   * Sets the color of the Navbar. Main options are primary, light and dark, default light.
+   *
+   * You can also choose one of the other contextual classes provided by Bootstrap
+   * (secondary, success, warning, danger, info, white) or any valid CSS color of
+   * your choice (e.g. a hex code, a decimal code or a CSS color name)
+   */
+  color: PropTypes.string,
+
+  /**
+    * Dash-assigned callback that should be called to report property changes
+    * to Dash, to make them available for callbacks.
+    */
+  setProps: PropTypes.func
 };

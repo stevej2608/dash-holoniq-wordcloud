@@ -1,0 +1,62 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+
+    // Debug component JS source. Start dash app in terminal window
+    // then launch debugger
+
+    {
+      "type": "pwa-chrome",
+      "name": "1. Debug component JS in Browser",
+      "request": "launch",
+      "url": "http://default:8060",
+      "sourceMaps": true,
+      "webRoot": "${workspaceFolder}",
+      "resolveSourceMapLocations": [
+        "dash_tagcloud/**/*.js"
+      ],
+    },
+
+    // Debug Dash app python source
+
+    {
+      "name": "2. Debug usage.py",
+      "type": "python",
+      "request": "launch",
+      "python": "${command:python.interpreterPath}",
+      "program": "${workspaceFolder}/usage.py",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "internalConsoleOptions": "openOnSessionStart",
+      "justMyCode": false,
+      "serverReadyAction": {
+        "pattern": ".*visit http://(.*)",
+        "uriFormat": "http://%s",
+        "action": "openExternally"
+      }
+    },
+
+    {
+      "name": "3. PyTest (Current file)",
+      "type": "python",
+      "request": "launch",
+      "stopOnEntry": false,
+      "module": "pytest",
+      "args": [
+        "--headless",
+        "-sv",
+        "${file}"
+      ],
+      "cwd": "${workspaceRoot}",
+      "env": {},
+      "envFile": "${workspaceRoot}/.env",
+      "console": "internalConsole",
+      "internalConsoleOptions": "openOnSessionStart",
+      "justMyCode": false
+    },
+
+  ]
+}

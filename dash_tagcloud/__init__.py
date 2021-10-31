@@ -67,12 +67,13 @@ _js_dist.extend(
     [
         {
             'relative_package_path': 'dash_tagcloud.min.js',
-    
+            'dev_package_path': 'dash_tagcloud.dev.js',
             'namespace': package_name
         },
         {
             'relative_package_path': 'dash_tagcloud.min.js.map',
-    
+            'dev_package_path': 'dash_tagcloud.dev.js.map',
+
             'namespace': package_name,
             'dynamic': True
         }

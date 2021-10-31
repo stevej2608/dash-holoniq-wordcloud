@@ -27,6 +27,12 @@ module.exports = (env, argv) => {
         mode = 'production';
     }
 
+    // Addition to cookie-cutter template, needed to get VSCODE debug to work
+
+    if (mode === 'development') {
+      overrides.devtool = 'eval-source-map'
+    }
+
     let filename = (overrides.output || {}).filename;
     if(!filename) {
         const modeSuffix = mode === 'development' ? 'dev' : 'min';

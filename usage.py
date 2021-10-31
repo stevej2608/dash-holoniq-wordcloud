@@ -1,24 +1,35 @@
+from  dash import html
 import dash_tagcloud
-import dash
-from dash.dependencies import Input, Output
-import dash_html_components as html
+from app import create_app, serve_app
 
-app = dash.Dash(__name__)
+
+app = create_app()
+
+style={
+    'fontFamily': 'sans-serif',
+    'fontSize': 30,
+    'fontWeight': 'bold',
+    'fontStyle': 'italic',
+    'padding': 5,
+    'width': '100%',
+    'height': '100%'
+}
 
 app.layout = html.Div([
-    dash_tagcloud.DashTagcloud(
-        id='input',
-        value='my-value',
-        label='my-label'
-    ),
-    html.Div(id='output')
+    html.H2('Tag Cloud'),
+    html.Div([
+        html.Div([
+                dash_tagcloud.DashTagcloud([
+                    html.Div("react", style={'fontSize': 50}),
+                    html.Div("Red", style={'color': 'red', 'fontSize': 20 }),
+                    html.Div("Green", style={'color': 'green', 'fontSize': 30}),
+                    html.Div("cloud")
+                ], id='input', rotate=60, spiral='archimedean', style=style)
+            ], className='app-inner')
+
+    ], className='app-outer')
 ])
 
 
-@app.callback(Output('output', 'children'), [Input('input', 'value')])
-def display_output(value):
-    return 'You have entered {}'.format(value)
-
-
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    serve_app(app)

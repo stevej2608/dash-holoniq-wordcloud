@@ -1,0 +1,20 @@
+{
+  "python.testing.pytestArgs": [
+      "tests"
+  ],
+  "python.testing.unittestEnabled": false,
+  "python.testing.nosetestsEnabled": false,
+  "python.testing.pytestEnabled": true,
+
+  "python.terminal.activateEnvironment": true,
+  "python.linting.pylintEnabled": true,
+
+  "files.watcherExclude": {
+    "**/.venv/**": true,
+    "**/__pycache__/*/**": true,
+    "**/tmp/*/**": true
+  },
+  "python.formatting.provider": "autopep8",
+  "remote.localPortHost": "allInterfaces",
+  "python.linting.enabled": true
+}
