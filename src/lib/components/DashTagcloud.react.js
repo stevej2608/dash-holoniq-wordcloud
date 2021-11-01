@@ -15,9 +15,37 @@ import TagCloud from 'react-tag-cloud';
 
 export default class DashTagcloud extends Component {
 
+  constructor(props){
+    super(props);
+    this.onclick = false
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick(e) {
+    // console.log('DashTagcloud.handleClick')
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+    this.onclick = true
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+
+    // Click events on any child cause the entire cloud to
+    // update. This results in new layout with new colors. This
+    // behaviour is not intended and only happens when the react
+    // TagCloud component is managed by Dash. To stop this
+    // the click event sets a flag that we test here. If it's
+    // set we dismiss the update
+
+    const update = !this.onclick
+    this.onclick = false
+    // console.log('DashTagcloud.shouldComponentUpdate=%s', update)
+    return update
+  }
+
   render() {
 
-    console.log('DashTagcloud.render')
+    // console.log('DashTagcloud.render')
 
     const {label, id, loading_state, setProps, color, hue, random=0, children, ...tagcloud_props} = this.props
     const tag_children = React.Children.map(children, (child => <div>{React.cloneElement(child)}</div>))
@@ -34,7 +62,7 @@ export default class DashTagcloud extends Component {
       }
 
     return (
-      <TagCloud {...tagcloud_props}>
+      <TagCloud {...tagcloud_props} onClick={this.handleClick}>
         {tag_children}
       </TagCloud>
     )

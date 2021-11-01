@@ -7,8 +7,6 @@ Dash wrapper for [react-tag-cloud](https://github.com/IjzerenHein/react-tag-clou
 
 ### TO DO
 
-* Find out what causes the cloud to update when a word is clicked and stop it happening
-
 
 ### Debugging the python demo `usage.py`
 

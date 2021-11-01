@@ -108,7 +108,7 @@ app.layout = html.Div([
                 html.Div('Cops',style=styles.small),
                 html.Div('Alfred J. Kwak', style=styles.small),
                 html.Div('Dr Snuggles',style=styles.small),
-                ], className='tag-cloud', spiral='rectangular', style=style, random=10)
+                ], className='tag-cloud', spiral='rectangular', style=style, random=0)
             ], className='app-inner')
     ], className='app-outer')
 ])
