@@ -7,10 +7,13 @@ from app import create_app, serve_app
 # https://github.com/IjzerenHein/react-tag-cloud/blob/master/examples/tagCloud/src/App.js
 #
 # See also the css in assets/style.css
-#
-#
+
+
 # https://github.com/IjzerenHein/react-tag-cloud
+#
+# Interactve demo
 # https://www.jasondavies.com/wordcloud/
+
 
 
 app = create_app()
@@ -105,7 +108,7 @@ app.layout = html.Div([
                 html.Div('Cops',style=styles.small),
                 html.Div('Alfred J. Kwak', style=styles.small),
                 html.Div('Dr Snuggles',style=styles.small),
-                ], id='input', className='tag-cloud', spiral='archimedean', style=style)
+                ], className='tag-cloud', spiral='rectangular', style=style, random=10)
             ], className='app-inner')
     ], className='app-outer')
 ])

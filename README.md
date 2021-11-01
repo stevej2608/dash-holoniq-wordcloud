@@ -5,11 +5,9 @@
 
 Dash wrapper for [react-tag-cloud](https://github.com/IjzerenHein/react-tag-cloud)
 
-## TODO
+### TO DO
 
-Initial tag cloud displays.
-
-* Spiral not working
+* Find out what causes the cloud to update when a word is clicked and stop it happening
 
 
 ### Debugging the python demo `usage.py`

@@ -5,12 +5,21 @@ import PropTypes from 'prop-types';
 import TagCloud from 'react-tag-cloud';
 
 /**
- * ExampleComponent is an example component.
+ * This is a Dash wrapper for the Wordle-inspired word cloud layout. It uses HTML5
+ * canvas and sprite masks to achieve near-interactive speeds.
+ *
+ * See https://github.com/IjzerenHein/react-tag-cloud
+ *
+ * See also https://github.com/jasondavies/d3-cloud
  */
 
 export default class DashTagcloud extends Component {
+
   render() {
-    const {label, id, loading_state, setProps, color, hue, children, ...tagcloud_props} = this.props
+
+    console.log('DashTagcloud.render')
+
+    const {label, id, loading_state, setProps, color, hue, random=0, children, ...tagcloud_props} = this.props
     const tag_children = React.Children.map(children, (child => <div>{React.cloneElement(child)}</div>))
 
     if (tagcloud_props.style && tagcloud_props.style.color) {
@@ -18,8 +27,14 @@ export default class DashTagcloud extends Component {
       tagcloud_props.style.color = () => randomColor(color)
     }
 
+    const _random = random
+
+    tagcloud_props.random = () => {
+      return _random? Math.random(_random) : 0
+      }
+
     return (
-      <TagCloud {...tagcloud_props} rotate={60}>
+      <TagCloud {...tagcloud_props}>
         {tag_children}
       </TagCloud>
     )
@@ -49,6 +64,12 @@ DashTagcloud.propTypes = {
    */
 
   rotate: PropTypes.number,
+
+  /**
+   *
+   */
+
+  random: PropTypes.number,
 
   /**
    * Spiral 'archimedean'| 'rectangular'
