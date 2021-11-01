@@ -10,10 +10,16 @@ import TagCloud from 'react-tag-cloud';
 
 export default class DashTagcloud extends Component {
   render() {
-    const {label, id, loading_state, setProps, children, ...tagcloud_props} = this.props
+    const {label, id, loading_state, setProps, color, hue, children, ...tagcloud_props} = this.props
     const tag_children = React.Children.map(children, (child => <div>{React.cloneElement(child)}</div>))
+
+    if (tagcloud_props.style && tagcloud_props.style.color) {
+      const color = tagcloud_props.style.color
+      tagcloud_props.style.color = () => randomColor(color)
+    }
+
     return (
-      <TagCloud className='tag-cloud' {...tagcloud_props} rotate={60}>
+      <TagCloud {...tagcloud_props} rotate={60}>
         {tag_children}
       </TagCloud>
     )
@@ -51,13 +57,10 @@ DashTagcloud.propTypes = {
   spiral: PropTypes.string,
 
   /**
-   * Sets the color of the Navbar. Main options are primary, light and dark, default light.
-   *
-   * You can also choose one of the other contextual classes provided by Bootstrap
-   * (secondary, success, warning, danger, info, white) or any valid CSS color of
-   * your choice (e.g. a hex code, a decimal code or a CSS color name)
+   * Often used with CSS to style elements with common properties.
    */
-  color: PropTypes.string,
+
+  className: PropTypes.string,
 
   /**
     * Dash-assigned callback that should be called to report property changes

@@ -9,9 +9,8 @@ Dash wrapper for [react-tag-cloud](https://github.com/IjzerenHein/react-tag-clou
 
 Initial tag cloud displays.
 
-* Rotate not working
 * Spiral not working
-* Unable to pass rotate to children.
+
 
 ### Debugging the python demo `usage.py`
 
