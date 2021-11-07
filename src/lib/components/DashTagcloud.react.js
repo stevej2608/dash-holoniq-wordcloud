@@ -19,6 +19,7 @@ export default class DashTagcloud extends Component {
     super(props);
     this.onclick = false
     this.handleClick = this.handleClick.bind(this)
+    this.add_wrapper = this.add_wrapper.bind(this)
   }
 
   handleClick(e) {
@@ -43,12 +44,30 @@ export default class DashTagcloud extends Component {
     return update
   }
 
+  add_wrapper(child) {
+
+    const props = child.props._dashprivate_layout.props || child.props
+
+    let text = props.text;
+
+    if (!text) {
+        const children = props.children;
+        text = Array.isArray(children) ? children[0] : children;
+    }
+
+    text = '' + text
+
+    const wrapper = <div {...props} >{text}</div>
+    return wrapper
+
+  }
+
   render() {
 
     // console.log('DashTagcloud.render')
 
     const {label, id, loading_state, setProps, color, hue, random=0, children, ...tagcloud_props} = this.props
-    const tag_children = React.Children.map(children, (child => <div>{React.cloneElement(child)}</div>))
+    // const tag_children = React.Children.map(children, (child) => this.add_wrapper(child))
 
     if (tagcloud_props.style && tagcloud_props.style.color) {
       const color = tagcloud_props.style.color
@@ -63,7 +82,7 @@ export default class DashTagcloud extends Component {
 
     return (
       <TagCloud {...tagcloud_props} onClick={this.handleClick}>
-        {tag_children}
+        {children}
       </TagCloud>
     )
   }

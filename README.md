@@ -28,3 +28,11 @@ In a terminal window start the dash application:
 Select debugger launch *1: JS Browser* and press F5. The chrome browser
 will open and display your application. Enter breakpoints in the source
 code eg *./src/lib/components/DashDatatables.react.js* as required.
+
+
+### Links
+
+* [react-tag-cloud](https://github.com/IjzerenHein/react-tag-cloud)
+* [d3-cloud](https://github.com/jasondavies/d3-cloud)
+    * [demo](https://www.jasondavies.com/wordcloud/)
+    * [stackblitz](https://stackblitz.com/edit/react-tag-cloud-t5x4zt?file=App.js)

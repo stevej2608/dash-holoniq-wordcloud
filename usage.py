@@ -51,68 +51,75 @@ def CloudItem(text):
         html.Div(html.Div('HOVERED!', className="tag-item-tooltip"))
     ],className="tag-item-wrapper")
 
+words = [
+        html.Div(
+        "Futurama",
+        style={
+            'fontFamily': 'serif',
+            'fontSize': 40,
+            'fontStyle': 'italic',
+            'fontWeight': 'bold',
+            'color': 'red'}
+        ),
+        CloudItem(text="Custom item, Hover me!"),
+        CloudItem(text="Custom item 2, Hover me!"),
+        html.Div('Transformers', style=styles.large),
+        html.Div('Simpsons', style=styles.large),
+        html.Div('Dragon Ball', style=styles.large),
+        html.Div('Rick & Morty', style=styles.large),
+        html.Div('He man', style={'fontFamily': 'courier'}),
+        html.Div('World trigger', style={'fontSize': 30}),
+        html.Div('Avengers', style={'fontStyle': 'italic'}),
+        html.Div('Family Guy', style={'fontWeight': 200}),
+        html.Div('American Dad', style={'color': 'green'}),
+        html.Div([
+            html.Div('Hover Me Please!'),
+            html.Div('HOVERED!', className="tag-item-tooltip"),
+            ], className="tag-item-wrapper"),
+        html.Div('Gobots'),
+        html.Div('Thundercats'),
+        html.Div('M.A.S.K.'),
+        html.Div('GI Joe'),
+        html.Div('Inspector Gadget'),
+        html.Div('Bugs Bunny'),
+        html.Div('Tom & Jerry'),
+        html.Div('Cowboy Bebop'),
+        html.Div('Evangelion'),
+        html.Div('Bleach'),
+        html.Div('GITS'),
+        html.Div('Pokemon'),
+        html.Div('She Ra'),
+        html.Div('Fullmetal Alchemist'),
+        html.Div('Gundam'),
+        html.Div('Uni Taisen'),
+        html.Div('Pinky and the Brain'),
+        html.Div('Bobs Burgers'),
+        html.Div('Dino Riders', style=styles.small),
+        html.Div('Silverhawks', style=styles.small),
+        html.Div('Bravestar', style=styles.small),
+        html.Div('Starcom', style=styles.small),
+        html.Div('Cops',style=styles.small),
+        html.Div('Alfred J. Kwak', style=styles.small),
+        html.Div('Dr Snuggles',style=styles.small),
+    ]
+
+
+words1 = [
+        html.Div('Transformers', style=styles.large),
+        html.Div('Simpsons', style=styles.large),
+        html.Div('Dragon Ball', style=styles.large),
+        html.Div('Rick & Morty', style=styles.large),
+        html.Div('He man', style={'fontFamily': 'courier'}),
+    ]
 
 app.layout = html.Div([
     html.Div([
         html.Div([
-
             html.H1('Dash Tag Cloud'),
-
-            dash_tagcloud.DashTagcloud([
-                html.Div(
-                "Futurama",
-                style={
-                    'fontFamily': 'serif',
-                    'fontSize': 40,
-                    'fontStyle': 'italic',
-                    'fontWeight': 'bold',
-                    'color': 'red'}
-                ),
-                CloudItem(text="Custom item, Hover me!"),
-                CloudItem(text="Custom item 2, Hover me!"),
-                html.Div('Transformers', style=styles.large),
-                html.Div('Simpsons', style=styles.large),
-                html.Div('Dragon Ball', style=styles.large),
-                html.Div('Rick & Morty', style=styles.large),
-                html.Div('He man', style={'fontFamily': 'courier'}),
-                html.Div('World trigger', style={'fontSize': 30}),
-                html.Div('Avengers', style={'fontStyle': 'italic'}),
-                html.Div('Family Guy', style={'fontWeight': 200}),
-                html.Div('American Dad', style={'color': 'green'}),
-                html.Div([
-                    html.Div('Hover Me Please!'),
-                    html.Div('HOVERED!', className="tag-item-tooltip"),
-                    ], className="tag-item-wrapper"),
-                html.Div('Gobots'),
-                html.Div('Thundercats'),
-                html.Div('M.A.S.K.'),
-                html.Div('GI Joe'),
-                html.Div('Inspector Gadget'),
-                html.Div('Bugs Bunny'),
-                html.Div('Tom & Jerry'),
-                html.Div('Cowboy Bebop'),
-                html.Div('Evangelion'),
-                html.Div('Bleach'),
-                html.Div('GITS'),
-                html.Div('Pokemon'),
-                html.Div('She Ra'),
-                html.Div('Fullmetal Alchemist'),
-                html.Div('Gundam'),
-                html.Div('Uni Taisen'),
-                html.Div('Pinky and the Brain'),
-                html.Div('Bobs Burgers'),
-                html.Div('Dino Riders', style=styles.small),
-                html.Div('Silverhawks', style=styles.small),
-                html.Div('Bravestar', style=styles.small),
-                html.Div('Starcom', style=styles.small),
-                html.Div('Cops',style=styles.small),
-                html.Div('Alfred J. Kwak', style=styles.small),
-                html.Div('Dr Snuggles',style=styles.small),
-                ], className='tag-cloud', spiral='rectangular', style=style, random=0)
+            dash_tagcloud.DashTagcloud(words, className='tag-cloud', rotate=45, spiral='rectangular', style=style, random=0)
             ], className='app-inner')
     ], className='app-outer')
 ])
-
 
 if __name__ == '__main__':
     serve_app(app)
