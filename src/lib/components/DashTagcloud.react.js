@@ -2,93 +2,42 @@ import React, {Component} from 'react';
 import randomColor from 'randomcolor';
 import PropTypes from 'prop-types';
 
-import TagCloud from 'react-tag-cloud';
+import WordCloud from 'react-d3-cloud';
 
 /**
- * This is a Dash wrapper for the Wordle-inspired word cloud layout. It uses HTML5
- * canvas and sprite masks to achieve near-interactive speeds.
+ * This is a Dash wrapper for treact-d3-cloud.
  *
- * See https://github.com/IjzerenHein/react-tag-cloud
+ * See https://github.com/Yoctol/react-d3-cloud
  *
- * See also https://github.com/jasondavies/d3-cloud
  */
 
 export default class DashTagcloud extends Component {
 
   constructor(props){
     super(props);
-    this.onclick = false
-    this.handleClick = this.handleClick.bind(this)
-    this.add_wrapper = this.add_wrapper.bind(this)
   }
 
-  handleClick(e) {
-    // console.log('DashTagcloud.handleClick')
+  handleClick = (e) => {
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
-    this.onclick = true
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-
-    // Click events on any child cause the entire cloud to
-    // update. This results in new layout with new colors. This
-    // behaviour is not intended and only happens when the react
-    // TagCloud component is managed by Dash. To stop this
-    // the click event sets a flag that we test here. If it's
-    // set we dismiss the update
-
-    const update = !this.onclick
-    this.onclick = false
-    // console.log('DashTagcloud.shouldComponentUpdate=%s', update)
-    return update
-  }
-
-  add_wrapper(child) {
-
-    const props = child.props._dashprivate_layout.props || child.props
-
-    let text = props.text;
-
-    if (!text) {
-        const children = props.children;
-        text = Array.isArray(children) ? children[0] : children;
-    }
-
-    text = '' + text
-
-    const wrapper = <div {...props} >{text}</div>
-    return wrapper
-
+    console.log(`onWordClick: ${d.text}`);
   }
 
   render() {
+    const {label, id, loading_state, setProps, fontSize, ...cloud_props} = this.props
 
-    // console.log('DashTagcloud.render')
-
-    const {label, id, loading_state, setProps, color, hue, random=0, children, ...tagcloud_props} = this.props
-    // const tag_children = React.Children.map(children, (child) => this.add_wrapper(child))
-
-    if (tagcloud_props.style && tagcloud_props.style.color) {
-      const color = tagcloud_props.style.color
-      tagcloud_props.style.color = () => randomColor(color)
-    }
-
-    const _random = random
-
-    tagcloud_props.random = () => {
-      return _random? Math.random(_random) : 0
-      }
+    cloud_props.fontSize = (word) => Math.log2(word.value) * fontSize
 
     return (
-      <TagCloud {...tagcloud_props} onClick={this.handleClick}>
-        {children}
-      </TagCloud>
+      <WordCloud {...cloud_props} onWordClick={this.onWordClick} />
     )
   }
 }
 
-DashTagcloud.defaultProps = {};
+DashTagcloud.defaultProps = {
+  rotate : 0,
+  fontSize : 10
+};
 
 DashTagcloud.propTypes = {
   /**
@@ -97,20 +46,27 @@ DashTagcloud.propTypes = {
   id: PropTypes.string,
 
   /**
-   * The children of this component
+   * Array of words to be displayed with word frequency
    */
-  children: PropTypes.node,
 
-  /**
-   * Defines CSS styles which will override styles previously set.
-   */
-  style: PropTypes.object,
+  data: PropTypes.arrayOf(PropTypes.shape({
+      text: PropTypes.string.isRequired,
+      value: PropTypes.number.isRequired,
+    })).isRequired,
+
 
   /**
    * Rotation in degrees
    */
 
   rotate: PropTypes.number,
+
+
+  /**
+   *
+   */
+
+  fontSize: PropTypes.number,
 
   /**
    *
@@ -123,6 +79,7 @@ DashTagcloud.propTypes = {
    */
 
   spiral: PropTypes.string,
+
 
   /**
    * Often used with CSS to style elements with common properties.

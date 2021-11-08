@@ -8,11 +8,11 @@
 
   "containerEnv": {
     "HOST_HOSTNAME": "default",
-    "HOST_HOSTPORT": "8060"
+    "HOST_HOSTPORT": "8070"
   },
 
 	// Set *default* container specific settings.json values on container create.
-	"settings": { 
+	"settings": {
 		"python.pythonPath": "/usr/local/bin/python",
 		"python.languageServer": "Pylance",
 		"python.linting.enabled": true,
@@ -28,21 +28,22 @@
 		"python.linting.pylintPath": "~/.local/bin/pylint"
 	},
 
- 
+
   "runArgs": [
     "--name=${localWorkspaceFolderBasename}"
   ],
-  
+
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
     "ms-python.python",
     "ms-python.vscode-pylance"
 	],
 
-  "appPort": "8060:8060",
-  "postCreateCommand": "pip install pylint && pip install -r requirements.txt && npm install",
+  "appPort": "8070:8070",
+  "postCreateCommand": "chmod +x .devcontainer/init.sh && .devcontainer/init.sh",
 
-  "workspaceFolder": "/workspace",
-	"workspaceMount": "source=/workspaces/${localWorkspaceFolderBasename},target=/workspace,type=bind,consistency=cached",
+
+  "workspaceFolder": "/${localWorkspaceFolderBasename}",
+	"workspaceMount": "source=/workspaces/${localWorkspaceFolderBasename},target=/${localWorkspaceFolderBasename},type=bind,consistency=cached",
 
 }
