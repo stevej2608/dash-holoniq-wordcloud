@@ -7,7 +7,7 @@
 **[react-d3-cloud](https://github.com/Yoctol/react-d3-cloud)** This works! **But**, I'm not impressed
 with the usability. Maybe word clouds are not the winner I was hoping for.
 
-**[react-tag-cloud] **Abandoned** I've struggled to get the same demo results as the pure [react-tag-cloud]. Not sure if its
+**[react-tag-cloud] Abandoned** I've struggled to get the same demo results as the pure [react-tag-cloud]. Not sure if its
 a basic failing in [react-tag-cloud] or some weird interaction wth the Dash layout. The [react-tag-cloud]
 example does not seem to give the same tightly knitted result as the [d3-cloud-demo]. I noticed that
 [react-tag-cloud] does not use SVG but lays out using html style properties. Maybe this is the
