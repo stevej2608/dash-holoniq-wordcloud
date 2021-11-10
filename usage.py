@@ -4,549 +4,144 @@ from app import create_app, serve_app
 
 app = create_app()
 
-data = [
-  { "text": 'Hey', "value": 1000 },
-  { "text": 'lol', "value": 200 },
-  { "text": 'first impression', "value": 800 },
-  { "text": 'very cool', "value": 1000 },
-  { "text": 'duck', "value": 10 },
-]
-
 security_data = [
-  {
-    "text": "Leveraged/Inverse",
-    "value": 265
-  },
-  {
-    "text": "Trading",
-    "value": 265
-  },
-  {
-    "text": "Equity",
-    "value": 1481
-  },
-  {
-    "text": "Large Cap",
-    "value": 500
-  },
-  {
-    "text": "US",
-    "value": 198
-  },
-  {
-    "text": "Blend",
-    "value": 311
-  },
-  {
-    "text": "Other",
-    "value": 237
-  },
-  {
-    "text": "Global",
-    "value": 372
-  },
-  {
-    "text": "Emerging Markets",
-    "value": 125
-  },
-  {
-    "text": "Bond",
-    "value": 463
-  },
-  {
-    "text": "USD",
-    "value": 170
-  },
-  {
-    "text": "Government",
-    "value": 110
-  },
-  {
-    "text": "Europe",
-    "value": 120
-  },
-  {
-    "text": "Sector",
-    "value": 249
-  },
-  {
-    "text": "Technology",
-    "value": 64
-  },
-  {
-    "text": "Commodities",
-    "value": 192
-  },
-  {
-    "text": "Japan",
-    "value": 56
-  },
-  {
-    "text": "Corporate",
-    "value": 106
-  },
-  {
-    "text": "Precious Metals",
-    "value": 55
-  },
-  {
-    "text": "Broad Basket",
-    "value": 41
-  },
-  {
-    "text": "Eurozone",
-    "value": 55
-  },
-  {
-    "text": "Consumer",
-    "value": 27
-  },
-  {
-    "text": "Goods",
-    "value": 27
-  },
-  {
-    "text": "Services",
-    "value": 50
-  },
-  {
-    "text": "Value",
-    "value": 47
-  },
-  {
-    "text": "Income",
-    "value": 47
-  },
-  {
-    "text": "UK",
-    "value": 39
-  },
-  {
-    "text": "ex Japan",
-    "value": 47
-  },
-  {
-    "text": "Asia",
-    "value": 43
-  },
-  {
-    "text": "EUR",
-    "value": 90
-  },
-  {
-    "text": "Energy",
-    "value": 48
-  },
-  {
-    "text": "Financial",
-    "value": 23
-  },
-  {
-    "text": "China",
-    "value": 34
-  },
-  {
-    "text": "Industrial",
-    "value": 31
-  },
-  {
-    "text": "Materials",
-    "value": 20
-  },
-  {
-    "text": "Healthcare",
-    "value": 19
-  },
-  {
-    "text": "High Yield",
-    "value": 43
-  },
-  {
-    "text": "Small Cap",
-    "value": 32
-  },
-  {
-    "text": "Pacific",
-    "value": 27
-  },
-  {
-    "text": "A Shares",
-    "value": 13
-  },
-  {
-    "text": "GBP",
-    "value": 43
-  },
-  {
-    "text": "Flex Cap",
-    "value": 23
-  },
-  {
-    "text": "India",
-    "value": 12
-  },
-  {
-    "text": "Korea",
-    "value": 12
-  },
-  {
-    "text": "Inflation Linked",
-    "value": 25
-  },
-  {
-    "text": "Brazil",
-    "value": 11
-  },
-  {
-    "text": "Broad",
-    "value": 14
-  },
-  {
-    "text": "Metals",
-    "value": 11
-  },
-  {
-    "text": "Local Currency",
-    "value": 14
-  },
-  {
-    "text": "Property",
-    "value": 26
-  },
-  {
-    "text": "Indirect",
-    "value": 26
-  },
-  {
-    "text": "Russia",
-    "value": 10
-  },
-  {
-    "text": "Communications",
-    "value": 10
-  },
-  {
-    "text": "Utilities",
-    "value": 10
-  },
-  {
-    "text": "Growth",
-    "value": 16
-  },
-  {
-    "text": "ex UK",
-    "value": 9
-  },
-  {
-    "text": "Latin",
-    "value": 9
-  },
-  {
-    "text": "America",
-    "value": 12
-  },
-  {
-    "text": "Ecology",
-    "value": 9
-  },
-  {
-    "text": "Canada",
-    "value": 8
-  },
-  {
-    "text": "Money",
-    "value": 8
-  },
-  {
-    "text": "Market",
-    "value": 8
-  },
-  {
-    "text": "Biotechnology",
-    "value": 8
-  },
-  {
-    "text": "Taiwan",
-    "value": 8
-  },
-  {
-    "text": "Fixed",
-    "value": 8
-  },
-  {
-    "text": "Grains",
-    "value": 7
-  },
-  {
-    "text": "Short Term",
-    "value": 30
-  },
-  {
-    "text": "Ultra",
-    "value": 7
-  },
-  {
-    "text": "Hedged",
-    "value": 23
-  },
-  {
-    "text": "Natural",
-    "value": 7
-  },
-  {
-    "text": "Resources",
-    "value": 7
-  },
-  {
-    "text": "Mid Cap",
-    "value": 33
-  },
-  {
-    "text": "Australia",
-    "value": 6
-  },
-  {
-    "text": "New",
-    "value": 6
-  },
-  {
-    "text": "Zealand",
-    "value": 6
-  },
-  {
-    "text": "Small/",
-    "value": 11
-  },
-  {
-    "text": "Water",
-    "value": 6
-  },
-  {
-    "text": "Turkey",
-    "value": 6
-  },
-  {
-    "text": "Softs",
-    "value": 5
-  },
-  {
-    "text": "Germany",
-    "value": 6
-  },
-  {
-    "text": "RMB",
-    "value": 5
-  },
-  {
-    "text": "Onshore",
-    "value": 5
-  },
-  {
-    "text": "Infrastructure",
-    "value": 5
-  },
-  {
-    "text": "South",
-    "value": 5
-  },
-  {
-    "text": "Africa",
-    "value": 7
-  },
-  {
-    "text": "Namibia",
-    "value": 5
-  },
-  {
-    "text": "Diversified",
-    "value": 17
-  },
-  {
-    "text": "Alt",
-    "value": 13
-  },
-  {
-    "text": "Systematic",
-    "value": 4
-  },
-  {
-    "text": "Futures",
-    "value": 4
-  },
-  {
-    "text": "ex Russia",
-    "value": 4
-  },
-  {
-    "text": "Emerging",
-    "value": 6
-  },
-  {
-    "text": "Indonesia",
-    "value": 4
-  },
-  {
-    "text": "Islamic",
-    "value": 7
-  },
-  {
-    "text": "Alternative",
-    "value": 4
-  },
-  {
-    "text": "Relative",
-    "value": 3
-  },
-  {
-    "text": "Arbitrage",
-    "value": 3
-  },
-  {
-    "text": "Agriculture",
-    "value": 5
-  },
-  {
-    "text": "Livestock",
-    "value": 3
-  },
-  {
-    "text": "Long",
-    "value": 3
-  },
-  {
-    "text": "Term",
-    "value": 3
-  },
-  {
-    "text": "Italy",
-    "value": 3
-  },
-  {
-    "text": "Not Categorised",
-    "value": 3
-  },
-  {
-    "text": "North",
-    "value": 3
-  },
-  {
-    "text": "Private",
-    "value": 3
-  },
-  {
-    "text": "Currency",
-    "value": 2
-  },
-  {
-    "text": "BRIC",
-    "value": 2
-  },
-  {
-    "text": "Convertible",
-    "value": 2
-  },
-  {
-    "text": "France",
-    "value": 2
-  },
-  {
-    "text": "Biased",
-    "value": 2
-  },
-  {
-    "text": "Frontier",
-    "value": 2
-  },
-  {
-    "text": "Markets",
-    "value": 2
-  },
-  {
-    "text": "Israel",
-    "value": 2
-  },
-  {
-    "text": "Large/",
-    "value": 2
-  },
-  {
-    "text": "Nordic",
-    "value": 2
-  },
-  {
-    "text": "Poland",
-    "value": 2
-  },
-  {
-    "text": "Switzerland",
-    "value": 2
-  },
-  {
-    "text": "Thailand",
-    "value": 2
-  },
-  {
-    "text": "Moderate",
-    "value": 3
-  },
-  {
-    "text": "Allocation",
-    "value": 5
-  },
-  {
-    "text": "Vietnam",
-    "value": 2
-  },
-  {
-    "text": "Middle",
-    "value": 1
-  },
-  {
-    "text": "East",
-    "value": 1
-  },
-  {
-    "text": "Flexible",
-    "value": 1
-  },
-  {
-    "text": "Subordinated",
-    "value": 1
-  },
-  {
-    "text": "Moderately",
-    "value": 2
-  },
-  {
-    "text": "Adventurous",
-    "value": 1
-  },
-  {
-    "text": "Cautious",
-    "value": 1
-  },
-  {
-    "text": "Netherlands",
-    "value": 1
-  },
-  {
-    "text": "Spain",
-    "value": 1
-  },
-  {
-    "text": "Sweden",
-    "value": 1
-  }
+    ["Leveraged/Inverse", 36],
+    ["Trading", 36],
+    ["Equity", 43],
+    ["Large Cap", 39],
+    ["US", 35],
+    ["Blend", 37],
+    ["Other", 36],
+    ["Global", 38],
+    ["Emerging Markets", 33],
+    ["Bond", 39],
+    ["USD", 34],
+    ["Government", 32],
+    ["Europe", 33],
+    ["Sector Equity", 36],
+    ["Technology", 30],
+    ["Commodities", 35],
+    ["Japan", 29],
+    ["Corporate", 32],
+    ["Precious Metals", 29],
+    ["Broad Basket", 28],
+    ["Eurozone", 29],
+    ["Consumer", 26],
+    ["Goods", 26],
+    ["Services", 29],
+    ["Value", 29],
+    ["Income", 29],
+    ["UK", 28],
+    ["ex Japan", 29],
+    ["Asia", 28],
+    ["EUR", 32],
+    ["Energy", 29],
+    ["Financial", 26],
+    ["China", 27],
+    ["Industrial", 27],
+    ["Materials", 25],
+    ["Healthcare", 25],
+    ["High Yield", 28],
+    ["Small Cap", 27],
+    ["Pacific", 26],
+    ["A Shares", 23],
+    ["GBP", 28],
+    ["Flex Cap", 26],
+    ["India", 23],
+    ["Korea", 23],
+    ["Inflation Linked", 26],
+    ["Brazil", 22],
+    ["Broad", 23],
+    ["Metals", 22],
+    ["Local Currency", 23],
+    ["Property", 26],
+    ["Indirect", 26],
+    ["Russia", 22],
+    ["Communications", 22],
+    ["Utilities", 22],
+    ["Growth", 24],
+    ["ex UK", 22],
+    ["Latin", 22],
+    ["America", 23],
+    ["Ecology", 22],
+    ["Canada", 21],
+    ["Money", 21],
+    ["Market", 21],
+    ["Biotechnology", 21],
+    ["Taiwan", 21],
+    ["Fixed", 21],
+    ["Grains", 20],
+    ["Short Term", 27],
+    ["Ultra", 20],
+    ["Hedged", 26],
+    ["Natural", 20],
+    ["Resources", 20],
+    ["Mid Cap", 27],
+    ["Australia", 20],
+    ["New", 20],
+    ["Zealand", 20],
+    ["Small/", 22],
+    ["Water", 20],
+    ["Turkey", 20],
+    ["Softs", 19],
+    ["Germany", 20],
+    ["RMB", 19],
+    ["Onshore", 19],
+    ["Infrastructure", 19],
+    ["South", 19],
+    ["Africa", 20],
+    ["Namibia", 19],
+    ["Diversified", 24],
+    ["Alt", 23],
+    ["Systematic", 18],
+    ["Futures", 18],
+    ["ex Russia", 18],
+    ["Emerging", 20],
+    ["Indonesia", 18],
+    ["Islamic", 20],
+    ["Alternative", 18],
+    ["Relative", 17],
+    ["Arbitrage", 17],
+    ["Agriculture", 19],
+    ["Livestock", 17],
+    ["Long", 17],
+    ["Term", 17],
+    ["Italy", 17],
+    ["Not Categorised", 17],
+    ["North", 17],
+    ["Private", 17],
+    ["Currency", 15],
+    ["BRIC", 15],
+    ["Convertible", 15],
+    ["France", 15],
+    ["Biased", 15],
+    ["Frontier", 15],
+    ["Markets", 15],
+    ["Israel", 15],
+    ["Large/", 15],
+    ["Nordic", 15],
+    ["Poland", 15],
+    ["Switzerland", 15],
+    ["Thailand", 15],
+    ["Moderate", 17],
+    ["Allocation", 19],
+    ["Vietnam", 15],
+    ["Middle East", 12],
+    ["Flexible", 12],
+    ["Subordinated", 12],
+    ["Moderately", 15],
+    ["Adventurous", 12],
+    ["Cautious", 12],
+    ["Netherlands", 12],
+    ["Spain", 12],
+    ["Sweden", 12],
 ]
-
-
 
 app.layout = html.Div([
     html.Div([
         html.Div([
             html.H1('Dash Tag Cloud'),
-            dash_tagcloud.DashTagcloud(data=security_data, className='tag-cloud',
-                    spiral="rectangular", fontSize=4)
+            dash_tagcloud.DashTagcloud(list=security_data, width=1200, height=600)
             ], className='app-inner')
     ], className='app-outer')
 ])

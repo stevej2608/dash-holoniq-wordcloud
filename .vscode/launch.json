@@ -12,7 +12,7 @@
       "type": "pwa-chrome",
       "name": "1. Debug component JS in Browser",
       "request": "launch",
-      "url": "http://default:8060",
+      "url": "http://default:8070",
       "sourceMaps": true,
       "webRoot": "${workspaceFolder}",
       "resolveSourceMapLocations": [

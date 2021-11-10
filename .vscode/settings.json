@@ -11,6 +11,7 @@
 
   "files.watcherExclude": {
     "**/.venv/**": true,
+    "**/node_modules/**": true,
     "**/__pycache__/*/**": true,
     "**/tmp/*/**": true
   },

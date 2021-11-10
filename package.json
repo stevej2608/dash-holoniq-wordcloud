@@ -21,7 +21,7 @@
   "dependencies": {
     "ramda": "^0.26.1",
     "randomcolor": "^0.6.2",
-    "react-d3-cloud": "^1.0.5"
+    "wordcloud": "^1.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",
