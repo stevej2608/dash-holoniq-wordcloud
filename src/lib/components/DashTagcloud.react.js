@@ -1,6 +1,7 @@
 import React, { PureComponent, createRef } from 'react';
 import PropTypes from 'prop-types';
 import WordCloudJS from 'wordcloud';
+import seedRandom from 'seedrandom';
 
 /**
  * This is a Dash wrapper for wordcloud2.js.
@@ -14,7 +15,7 @@ import WordCloudJS from 'wordcloud';
 
 export default class DashTagcloud extends PureComponent {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     console.log('DashTagcloud.constructor')
     this.renderWordCloud = this.renderWordCloud.bind(this)
@@ -31,10 +32,17 @@ export default class DashTagcloud extends PureComponent {
     this.renderWordCloud();
   }
 
-  renderWordCloud () {
-    const { width, height, ...options} = this.props;
+  renderWordCloud() {
+    const { width, height, ...options } = this.props;
     if (WordCloudJS.isSupported) {
-      WordCloudJS(this.canvas.current, {...options});
+
+      // https://github.com/timdream/wordcloud2.js/issues/138
+
+      if (options.shuffle === false){
+        seedRandom('wordcloud2', { global: true });
+      }
+
+      WordCloudJS(this.canvas.current, { ...options });
     }
   }
 
@@ -64,79 +72,207 @@ DashTagcloud.defaultProps = {
 
 DashTagcloud.propTypes = {
 
-    /**
-     * Canvas width
-     */
+  /**
+   * Canvas width
+   */
 
-    width: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
 
-    /**
-     * Canvas height
-     */
+  /**
+   * Canvas height
+   */
 
-    height: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
 
-    /**
-     * List of words/text to paint on the canvas in a 2-d array, in the form of [word, size].
-     *
-     * eg. [['foo', 12], ['bar', 6]]
-     */
+  // Presentation
 
-    list: PropTypes.array.isRequired,
+  /**
+   * List of words/text to paint on the canvas in a 2-d array, in the form
+   * of [word, size].
+   *
+   * eg. [['foo', 12], ['bar', 6]]
+   *
+   * Optionally, you can send additional data as array elements, in the
+   * form of '[word, size, data1, data2, ... ]' which can then be
+   * used in the callback functions of 'click', 'hover' interactions
+   * and fontWeight, color and classes callbacks
+   */
 
-    /**
-     *
-     */
+  list: PropTypes.array.isRequired,
 
-    color: PropTypes.oneOfType([
-      PropTypes.string, // CSS color
-      PropTypes.object, // null to dissable color inlininig
-      PropTypes.func,   // callback(word, weight, fontSize, distance, theta)
-    ]),
+  /**
+   * The font to use
+   */
 
-    /**
-     *
-     */
+  fontFamily: PropTypes.string,
 
-    shape: PropTypes.oneOf([
-        'circle',
-        'cardioid',
-        'diamond',
-        'square',
-        'triangle',
-        'triangle-forward',
-        'triangle-upright',
-        'pentagon',
-        'star',
-    ]),
+  /**
+   * The font weight to use, can be, as an example, 'normal', 'bold' or '600'
+   */
 
-    /**
-     *
-     */
+  fontWeight: PropTypes.string,
 
-    ellipticity: PropTypes.number,
+  /**
+   * Color of the text, can be any CSS color
+   */
 
-    /**
-     *
-     */
+  color: PropTypes.oneOfType([
+    PropTypes.string, // CSS color
+    PropTypes.object, // null to dissable color inlininig
+    PropTypes.func,   // callback(word, weight, fontSize, distance, theta)
+  ]),
 
-    minSize: PropTypes.number,
+  /**
+   * For DOM clouds, allows the user to define the class of the span elements. Can
+   * be a normal class string
+   */
 
-    /**
-     * calculates initial font size
-     */
+  classes: PropTypes.string,
 
-    weightFactor: PropTypes.number,
+  /**
+   * The minimum font size to draw on the canvas.
+   */
 
-    // Dimension
+  minSize: PropTypes.number,
 
-    /**
-     * calculates initial font size
-     */
+  /**
+   * Number to multiply for 'size' of each word in the list.
+   */
 
-    gridSize: PropTypes.number,
-    origin: PropTypes.arrayOf(PropTypes.number),
-    drawOutOfBound: PropTypes.bool,
+  weightFactor: PropTypes.number,
+
+  /**
+   * Paint the entire canvas with background color and consider
+   * it empty before start
+   */
+
+  clearCanvas: PropTypes.bool,
+
+  /**
+   * The color of the background
+   */
+
+  backgroundColor: PropTypes.string,
+
+  // Dimension
+
+  /**
+   * The size of the grid in pixels for marking the availability of
+   * the canvas — the larger the grid size, the
+   * bigger the gap between words
+   */
+
+  gridSize: PropTypes.number,
+
+  /**
+   * The origin of the “cloud” in [x, y].
+   */
+
+  origin: PropTypes.arrayOf(PropTypes.number),
+
+  /**
+   * Set to true to allow word being draw partly outside of
+   * the canvas. Allow word bigger than the size of the
+   * canvas to be drawn.
+   */
+
+  drawOutOfBound: PropTypes.bool,
+
+  /**
+   * Set to 'true' to shrink the word so it will fit into
+   * canvas. Best if 'drawOutOfBound' is set to 'false'. :warning:
+   * This word will now have lower 'weight'.
+   */
+
+  shrinkToFit: PropTypes.bool,
+
+  // Mask
+
+  /**
+   * Visualize the grid by draw squares to mask the drawn areas
+   */
+
+  drawMask: PropTypes.number,
+
+  /**
+   * Color of the mask squares.
+   */
+
+  maskColor: PropTypes.string,
+
+  /**
+   * Width of the gaps between mask squares.
+   */
+
+  maskGapWidth: PropTypes.number,
+
+  // Rotation
+
+  /**
+   * If the word should rotate, the minimum rotation (in rad) the text should rotate
+   */
+
+  minRotation: PropTypes.number,
+
+  /**
+   * If the word should rotate, the maximum rotation (in rad) the text should rotate. Set the two value equal
+   * to keep all text in one angle.
+   */
+
+  maxRotation: PropTypes.number,
+
+  /**
+   * Force the use of a defined number of angles. Set the value equal to 2 in a -90°/90°
+   * range means just -90, 0 or 90 will be used.
+   */
+
+  rotationSteps: PropTypes.number,
+
+  // Randomness
+
+  /**
+   * Shuffle the points to draw so the result will be different each
+   * time for the same list and settings.
+   */
+
+  shuffle: PropTypes.bool,
+
+  /**
+   * Probability for the word to rotate. Set the number to 1
+   * to always rotate.
+   */
+
+  rotateRatio: PropTypes.number,
+
+  // Shape
+
+  /**
+   * The shape of the "cloud" to draw. Available presents are:
+   */
+
+  shape: PropTypes.oneOf([
+    'circle',
+    'cardioid',
+    'diamond',
+    'square',
+    'triangle',
+    'triangle-forward',
+    'triangle-upright',
+    'pentagon',
+    'star',
+  ]),
+
+  /**
+   * The degree of "flatness" of the shape wordcloud2.js should draw.
+   */
+
+  ellipticity: PropTypes.number,
+
+  // Interactive
+
+
+  // Events
+
 
   /**
     * The ID used to identify this component in Dash callbacks.
