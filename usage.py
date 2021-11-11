@@ -157,12 +157,11 @@ app.layout = html.Div([
             backgroundColor='#001f00',
             shuffle=False,
             rotateRatio=0.5,
-            shrinkToFit=True,
+            shrinkToFit=False,
             shape='circle',
-            hover=True,
-            style={"padding" :"10px"}
+            hover=True
             ),
-            html.H6("", id="report")
+            html.H4("", id="report")
         ], className="App-header"),
     ], className ="App")
 
