@@ -3,6 +3,48 @@ import PropTypes from 'prop-types';
 import WordCloudJS from 'wordcloud';
 import seedRandom from 'seedrandom';
 
+
+class WordHoverBox extends PureComponent {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      boxCss : { left: 0, top: 0, width: 0, height: 0 },
+      hidden:  true,
+    };
+
+    this.drawBox = this.drawBox.bind(this)
+  }
+
+  drawBox(item, dimension) {
+
+    if (!dimension) {
+      this.setState({hidden: true})
+      return;
+    }
+
+    console.log('WordHoverBox.drawBox %s', JSON.stringify(dimension))
+
+    var dppx = 1
+    const hidden = false
+
+    const boxCss = {
+      left: dimension.x / dppx + 'px',
+      top: dimension.y / dppx + 'px',
+      width: dimension.w / dppx + 'px',
+      height: dimension.h / dppx + 'px'
+    }
+
+    this.setState({hidden, boxCss})
+  }
+
+  render() {
+    return (
+      <div id="box" hidden={this.state.hidden} style={this.state.boxCss}/>
+    )
+  }
+}
+
 /**
  * This is a Dash wrapper for wordcloud2.js.
  *
@@ -18,8 +60,11 @@ export default class DashTagcloud extends PureComponent {
   constructor(props) {
     super(props);
     console.log('DashTagcloud.constructor')
+
     this.renderWordCloud = this.renderWordCloud.bind(this)
+
     this.canvas = createRef();
+    this.hover_box = createRef();
   }
 
   componentDidMount() {
@@ -42,6 +87,8 @@ export default class DashTagcloud extends PureComponent {
         seedRandom('wordcloud2', { global: true });
       }
 
+      options.hover = this.hover_box.current.drawBox
+
       WordCloudJS(this.canvas.current, { ...options });
     }
   }
@@ -51,12 +98,15 @@ export default class DashTagcloud extends PureComponent {
     if (WordCloudJS.isSupported) {
       const { width, height } = this.props;
       return (
-        <canvas
-          ref={this.canvas}
-          style={{ width, height }}
-          width={width}
-          height={height}
-        />
+        <div>
+          <WordHoverBox ref={this.hover_box}/>
+          <canvas
+            ref={this.canvas}
+            style={{ width, height }}
+            width={width}
+            height={height}
+          />
+        </div>
       );
     }
 
@@ -66,11 +116,14 @@ export default class DashTagcloud extends PureComponent {
 }
 
 DashTagcloud.defaultProps = {
+  dppx : 1
 };
 
 // https://github.com/timdream/wordcloud2.js/blob/gh-pages/API.md
 
 DashTagcloud.propTypes = {
+
+  dppx: PropTypes.number,
 
   /**
    * Canvas width

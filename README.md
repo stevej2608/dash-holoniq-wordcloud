@@ -2,7 +2,12 @@
 
 ![](docs/img/dash-tag-cloud.png)
 
-The 
+This project is Plotyly/Dash wrapper for [wordcloud].
+
+### Usage
+
+**[wordcloud]** has an extensive [API](https://github.com/timdream/wordcloud2.js/blob/gh-pages/API.md) most
+of which is available to Dash users.
 
 ### History
 
@@ -64,6 +69,6 @@ code eg *./src/lib/components/DashDatatables.react.js* as required.
     * [d3-cloud-demo]
     * [stackblitz](https://stackblitz.com/edit/react-tag-cloud-t5x4zt?file=App.js)
 
-
+[wordcloud]: https://github.com/timdream/wordcloud2.js
 [react-tag-cloud]: https://github.com/IjzerenHein/react-tag-cloud
 [d3-cloud-demo]: https://www.jasondavies.com/wordcloud/

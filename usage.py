@@ -131,7 +131,7 @@ security_data = [
 ]
 
 
-def normalise(lst, vmax=80, vmin=16):
+def normalise(lst, vmax=50, vmin=16):
     lmax = max(lst, key=lambda x: x[1])[1]
     lmin = min(lst, key=lambda x: x[1])[1]
     vrange = vmax-vmin
@@ -144,13 +144,13 @@ app.layout = html.Div([
     html.Div([
         DashTagcloud(
             list=normalise(security_data),
-            width=800, height=480,
+            width=300, height=800,
             gridSize=16,
             # weightFactor=2,
             # origin=[90, 0],
             # fontFamily='Sans, serif',
-            color='random-dark',
-            # backgroundColor='#000',
+            color='#f0f0c0',
+            backgroundColor='#001f00',
             shuffle=False,
             rotateRatio=0.5,
             shrinkToFit=True,
