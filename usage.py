@@ -137,17 +137,18 @@ def normalise(lst, vmax=50, vmin=16):
     lmax = max(lst, key=lambda x: x[1])[1]
     lmin = min(lst, key=lambda x: x[1])[1]
     vrange = vmax-vmin
-    lrange = lmax-lmin
+    lrange = lmax-lmin or 1
     for entry in lst:
         entry[1] = int(((entry[1] - lmin) / lrange) * vrange + vmin)
     return lst
 
 app.layout = html.Div([
-    html.Div([
+    html.Header([
+        html.H2('Dash Tag Cloud'),
         DashTagcloud(
             id='cloud',
             list=normalise(security_data),
-            width=300, height=800,
+            width=600, height=400,
             gridSize=16,
             # weightFactor=2,
             # origin=[90, 0],
@@ -158,11 +159,12 @@ app.layout = html.Div([
             rotateRatio=0.5,
             shrinkToFit=True,
             shape='circle',
-            hover=True
-            )
-        ]),
-        html.H2("", id="report")
-    ])
+            hover=True,
+            style={"padding" :"10px"}
+            ),
+            html.H6("", id="report")
+        ], className="App-header"),
+    ], className ="App")
 
 @app.callback(
     Output(component_id='report', component_property='children'),
@@ -172,4 +174,4 @@ def update_output_div(item):
     return 'Output: {}'.format(item)
 
 if __name__ == '__main__':
-    serve_app(app, debug=True)
+    serve_app(app, debug=False)

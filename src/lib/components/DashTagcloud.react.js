@@ -17,9 +17,17 @@ class WordHoverBox extends PureComponent {
     };
 
     this.drawBox = this.drawBox.bind(this)
+    this.onMouseOut = this.onMouseOut.bind(this)
   }
 
-  drawBox(item, dimension) {
+  onMouseOut(evt){
+
+    // Mouse has left the canvas
+
+    this.setState({ hidden: true })
+  }
+
+  drawBox(item, dimension, evt) {
 
     if (!dimension) {
       this.setState({ hidden: true })
@@ -29,9 +37,11 @@ class WordHoverBox extends PureComponent {
     var dppx = 1
     const hidden = false
 
+    // console.log('WordHoverBox.drawBox %s', JSON.stringify(dimension))
+
     const boxCss = {
-      left: dimension.x / dppx + 'px',
-      top: dimension.y / dppx + 'px',
+      left: (dimension.x + evt.target.offsetLeft)/ dppx + 'px',
+      top: (dimension.y + evt.target.offsetTop)/ dppx + 'px',
       width: dimension.w / dppx + 'px',
       height: dimension.h / dppx + 'px'
     }
@@ -54,20 +64,17 @@ class WordHoverBox extends PureComponent {
  * This is a Dash wrapper for wordcloud2.js.
  *
  * See https://github.com/timdream/wordcloud2.js
- *
- * Thanks to https://github.com/Tarabyte, this code is a reworked version of
- * https://github.com/Tarabyte/react-wordcloud2/blob/master/src/WordCloud.js
- *
  */
 
 export default class DashTagcloud extends PureComponent {
 
   constructor(props) {
     super(props);
-    console.log('DashTagcloud.constructor')
+    // console.log('DashTagcloud.constructor')
 
     this.renderWordCloud = this.renderWordCloud.bind(this)
     this.wordcloudClick = this.wordcloudClick.bind(this)
+    this.onMouseOut = this.onMouseOut.bind(this)
 
     this.canvas = createRef();
     this.hover_box = createRef();
@@ -78,6 +85,13 @@ export default class DashTagcloud extends PureComponent {
     // console.log('DashTagcloud.wordcloudClick %s', JSON.stringify(item))
     const click = [...item]
     setProps({ click })
+  }
+
+  onMouseOut(evt){
+    const { current } = this.hover_box;
+    if (current) {
+      current.onMouseOut();
+    }
   }
 
   componentDidMount() {
@@ -142,15 +156,16 @@ export default class DashTagcloud extends PureComponent {
   render() {
     // console.log('DashTagcloud.render')
     if (WordCloudJS.isSupported) {
-      const { width, height } = this.props;
+      const { width, height, style} = this.props;
       return (
         <div>
           <WordHoverBox ref={this.hover_box} />
           <canvas
             ref={this.canvas}
-            style={{ width, height }}
+            style={{...style}}
             width={width}
             height={height}
+            onMouseOut={this.onMouseOut}
           />
         </div>
       );
@@ -391,6 +406,12 @@ DashTagcloud.propTypes = {
    */
 
   click: PropTypes.array,
+
+  /**
+   * Canvas style
+   */
+
+  style: PropTypes.object,
 
   /**
     * The ID used to identify this component in Dash callbacks.

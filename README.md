@@ -2,43 +2,82 @@
 
 ![](docs/img/dash-tag-cloud.png)
 
-This project is Plotyly/Dash wrapper for [wordcloud].
+This project is [Plotly/Dash] wrapper for for the highly configurable [wordcloud]. **[wordcloud]** has an extensive [API] most of which is available to Dash users.
 
 ### Usage
 
-**[wordcloud]** has an extensive [API](https://github.com/timdream/wordcloud2.js/blob/gh-pages/API.md) most
-of which is available to Dash users.
+    pip install dash-tagcloud
 
-### History
+```
+from dash_tagcloud import DashTagcloud
 
-**10/11/2021:** The [wordcloud](https://github.com/timdream/wordcloud2.js) package has 1811 stars. Thought I'd
-have a go with that.
+security_data = [
+    ["Equity", 74, "Zillions of equity based funds"],
+    ["Bond", 45],
+    ["Global", 30],
+    ["Sector Equity", 17],
+    ["EUR", 15],
+    ["Large Cap", 13],
+    ["Europe", 11],
+]
 
-* [wordcloud](https://github.com/timdream/wordcloud2.js)
-    * 1,811 stars, 54 issues, 6 months ago,	6 years ago, [demo](https://wordcloud2-js.timdream.org/#web-tech)
-    * [Wikipedia demo](https://wordcloud.timdream.org/#wikipedia:Cloud)
-    * HTML5 canvas
-    * [react integration](https://github.com/timdream/wordcloud2.js/issues/108)
-        * [stack exchange](https://stackoverflow.com/questions/46630694/wordcloud2-integration-for-react)
-    * [react-wordcloud2](https://github.com/Tarabyte/react-wordcloud2)
+app.layout = html.Div([
+    html.Div([
+        DashTagcloud(
+            id='tagcloud',
+            list=security_data,
+            width=300, height=200,
+            gridSize=16,
+            color='#f0f0c0',
+            backgroundColor='#001f00',
+            shuffle=False,
+            rotateRatio=0.5,
+            shrinkToFit=True,
+            shape='circle',
+            hover=True
+            )
+        ])
+    ])
 
-It produces the best layout so far but it's a bit slow to render
+```
 
-**8/11/2021:** [react-d3-cloud](https://github.com/Yoctol/react-d3-cloud) This works! **But**, I'm not impressed
-with the usability. Maybe word clouds are not the winner I was hoping for.
+Hover-over word highlighting and tooltips are supported, see the
+example [usage.py](./usage.py).
 
-**7/11/2021:** [react-tag-cloud] **Abandoned** I've struggled to get the same demo results as the pure [react-tag-cloud]. Not sure if its a basic failing in [react-tag-cloud] or some weird interaction wth the Dash layout. The [react-tag-cloud]
-example does not seem to give the same tightly knitted result as the [d3-cloud-demo]. I noticed that
-[react-tag-cloud] does not use SVG but lays out using html style properties. Maybe this is the
-reason. Anyway I can't see a way forward.
+Style/CSS support. Add custom style definitions to the *assets/* folder. The following
+css example is taken from the [wordcloud] project.
 
+*[./assets/style.css](assets/style.css)*
+```
+body {
+ 	font-family: sans-serif;
+	-webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-smooth: always;
+ 	margin: 0;
+ 	padding: 0;
+}
 
-Dash wrapper for [react-tag-cloud]
+#wc-canvas-hover {
+  pointer-events: none;
+  position: absolute;
+  box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  cursor: pointer;
+}
 
-### TO DO
-
-Words overlap - needs investigating.
-
+#wc-canvas-hover-label {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+  margin-top: 6px;
+  padding: 0 0.5em;
+  border-radius: 0.5em;
+  white-space: nowrap; }
+```
 
 ### Debugging the python demo `usage.py`
 
@@ -59,16 +98,37 @@ In a terminal window start the dash application:
 
 Select debugger launch *1: JS Browser* and press F5. The chrome browser
 will open and display your application. Enter breakpoints in the source
-code eg *./src/lib/components/DashDatatables.react.js* as required.
+code eg *./src/lib/components/DashTagcloud.react.js* as required.
 
+### Build the project
+
+    npm run clean
+    npm run build
+
+To create a tarball, first change the release version in package.json, then:
+
+    python setup.py sdist bdist_wheel
+
+The tarball is in *dist/dash_tagcloud-<version>.tar.gz*
+
+To install the tarball in a dash project:
+
+    pip install dash_tagcloud-<version>.tar.gz
+
+### Publish
+
+See [Create a production build and publish]
+
+    twine upload dist/*
 
 ### Links
 
-* [react-tag-cloud](https://github.com/IjzerenHein/react-tag-cloud)
-* [d3-cloud](https://github.com/jasondavies/d3-cloud)
-    * [d3-cloud-demo]
-    * [stackblitz](https://stackblitz.com/edit/react-tag-cloud-t5x4zt?file=App.js)
+The following [wordcloud] demos are available:
 
+* [wikipedia demo](https://wordcloud.timdream.org/#wikipedia:Cloud)
+* [wordcloud demo for developers](https://wordcloud2-js.timdream.org/#love)
+
+[Plotly/Dash]: https://plotly.com/dash/
 [wordcloud]: https://github.com/timdream/wordcloud2.js
-[react-tag-cloud]: https://github.com/IjzerenHein/react-tag-cloud
-[d3-cloud-demo]: https://www.jasondavies.com/wordcloud/
+[API]: https://github.com/timdream/wordcloud2.js/blob/gh-pages/API.md
+[Create a production build and publish]: https://github.com/plotly/
