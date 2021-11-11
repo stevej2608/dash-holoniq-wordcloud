@@ -8,10 +8,21 @@ body {
  	padding: 0;
 }
 
-#box {
+#wc-canvas-hover {
   pointer-events: none;
   position: absolute;
   box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.5);
   border-radius: 10px;
   cursor: pointer;
 }
+
+#wc-canvas-hover-label {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+  margin-top: 6px;
+  padding: 0 0.5em;
+  border-radius: 0.5em;
+  white-space: nowrap; }

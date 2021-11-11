@@ -11,6 +11,7 @@ class WordHoverBox extends PureComponent {
     this.state = {
       boxCss : { left: 0, top: 0, width: 0, height: 0 },
       hidden:  true,
+      tooltip: ''
     };
 
     this.drawBox = this.drawBox.bind(this)
@@ -35,12 +36,16 @@ class WordHoverBox extends PureComponent {
       height: dimension.h / dppx + 'px'
     }
 
-    this.setState({hidden, boxCss})
+    const tooltip = `${item[0]} (${item[1]})`
+
+    this.setState({hidden, boxCss, tooltip})
   }
 
   render() {
     return (
-      <div id="box" hidden={this.state.hidden} style={this.state.boxCss}/>
+      <div id="wc-canvas-hover" hidden={this.state.hidden} style={this.state.boxCss}>
+        <span id="wc-canvas-hover-label">{this.state.tooltip}</span>
+      </div>
     )
   }
 }
