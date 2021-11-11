@@ -3,14 +3,16 @@ import PropTypes from 'prop-types';
 import WordCloudJS from 'wordcloud';
 import seedRandom from 'seedrandom';
 
-
+/**
+ * Support component, provides hover capability & tooltip display
+ */
 class WordHoverBox extends PureComponent {
 
   constructor(props) {
     super(props);
     this.state = {
-      boxCss : { left: 0, top: 0, width: 0, height: 0 },
-      hidden:  true,
+      boxCss: { left: 0, top: 0, width: 0, height: 0 },
+      hidden: true,
       tooltip: ''
     };
 
@@ -20,11 +22,9 @@ class WordHoverBox extends PureComponent {
   drawBox(item, dimension) {
 
     if (!dimension) {
-      this.setState({hidden: true})
+      this.setState({ hidden: true })
       return;
     }
-
-    console.log('WordHoverBox.drawBox %s', JSON.stringify(dimension))
 
     var dppx = 1
     const hidden = false
@@ -38,7 +38,7 @@ class WordHoverBox extends PureComponent {
 
     const tooltip = item.length > 2 ? item[2] : `${item[0]} (${item[1]})`
 
-    this.setState({hidden, boxCss, tooltip})
+    this.setState({ hidden, boxCss, tooltip })
   }
 
   render() {
@@ -67,19 +67,56 @@ export default class DashTagcloud extends PureComponent {
     console.log('DashTagcloud.constructor')
 
     this.renderWordCloud = this.renderWordCloud.bind(this)
+    this.wordcloudClick = this.wordcloudClick.bind(this)
 
     this.canvas = createRef();
     this.hover_box = createRef();
   }
 
-  componentDidMount() {
-    console.log('DashTagcloud.componentDidMount')
-    this.renderWordCloud();
+  wordcloudClick(item) {
+    const { setProps } = this.props;
+    // console.log('DashTagcloud.wordcloudClick %s', JSON.stringify(item))
+    const click = [...item]
+    setProps({ click })
   }
 
-  componentDidUpdate() {
-    console.log('DashTagcloud.componentDidUpdate')
-    this.renderWordCloud();
+  componentDidMount() {
+    const { current } = this.canvas;
+    const _this = this
+    // console.log('DashTagcloud.componentDidMount')
+
+    if (current) {
+      this.renderWordCloud();
+    }
+
+  }
+
+  componentDidUpdate(prevProps) {
+
+    // console.log('DashTagcloud.componentDidUpdate')
+
+    function getOptions(props) {
+      const { click, children, loading_state, setProps, ...options } = props;
+      return JSON.stringify(options)
+    }
+
+    const options = getOptions(this.props)
+    const prevOptions = getOptions(prevProps)
+
+    if (options !== prevOptions) {
+      this.renderWordCloud();
+    }
+
+  }
+
+  componentWillUnmount() {
+    const { current } = this.canvas;
+
+    // console.log('DashTagcloud.componentWillUnmount')
+
+    if (current) {
+      current.removeEventListener('click', this.wordcloudclick)
+    }
   }
 
   renderWordCloud() {
@@ -88,7 +125,7 @@ export default class DashTagcloud extends PureComponent {
 
       // https://github.com/timdream/wordcloud2.js/issues/138
 
-      if (options.shuffle === false){
+      if (options.shuffle === false) {
         seedRandom('wordcloud2', { global: true });
       }
 
@@ -96,17 +133,19 @@ export default class DashTagcloud extends PureComponent {
         options.hover = this.hover_box.current.drawBox
       }
 
+      options.click = this.wordcloudClick
+
       WordCloudJS(this.canvas.current, { ...options });
     }
   }
 
   render() {
-    console.log('DashTagcloud.render')
+    // console.log('DashTagcloud.render')
     if (WordCloudJS.isSupported) {
       const { width, height } = this.props;
       return (
         <div>
-          <WordHoverBox ref={this.hover_box}/>
+          <WordHoverBox ref={this.hover_box} />
           <canvas
             ref={this.canvas}
             style={{ width, height }}
@@ -123,24 +162,29 @@ export default class DashTagcloud extends PureComponent {
 }
 
 DashTagcloud.defaultProps = {
-  dppx : 1,
-  hover: false
+  dppx: 1,
+  hover: false,
+  click: [],
 };
 
 // https://github.com/timdream/wordcloud2.js/blob/gh-pages/API.md
 
 DashTagcloud.propTypes = {
 
+  /**
+   * The device pixel density
+   */
+
   dppx: PropTypes.number,
 
   /**
-   * Canvas width
+   * The canvas width
    */
 
   width: PropTypes.number.isRequired,
 
   /**
-   * Canvas height
+   * The canvas height
    */
 
   height: PropTypes.number.isRequired,
@@ -341,6 +385,12 @@ DashTagcloud.propTypes = {
    */
 
   hover: PropTypes.bool,
+
+  /**
+   * Captures word onClick event and returns the cloud item that was clicked.
+   */
+
+  click: PropTypes.array,
 
   /**
     * The ID used to identify this component in Dash callbacks.

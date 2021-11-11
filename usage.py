@@ -1,5 +1,7 @@
 from  dash import html
+from dash.dependencies import Input, Output
 from dash_tagcloud import DashTagcloud
+
 from app import create_app, serve_app
 
 app = create_app()
@@ -143,6 +145,7 @@ def normalise(lst, vmax=50, vmin=16):
 app.layout = html.Div([
     html.Div([
         DashTagcloud(
+            id='cloud',
             list=normalise(security_data),
             width=300, height=800,
             gridSize=16,
@@ -157,8 +160,16 @@ app.layout = html.Div([
             shape='circle',
             hover=True
             )
-        ])
+        ]),
+        html.H2("", id="report")
     ])
+
+@app.callback(
+    Output(component_id='report', component_property='children'),
+    Input(component_id='cloud', component_property='click')
+)
+def update_output_div(item):
+    return 'Output: {}'.format(item)
 
 if __name__ == '__main__':
     serve_app(app, debug=True)

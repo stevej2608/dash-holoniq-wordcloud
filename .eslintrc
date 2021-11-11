@@ -35,7 +35,7 @@
     "accessor-pairs": ["error"],
     "block-scoped-var": ["error"],
     "consistent-return": ["error"],
-    "curly": ["error", "all"],
+    "curly": ["off", "all"],
     "default-case": ["error"],
     "dot-location": ["off"],
     "dot-notation": ["error"],
@@ -99,7 +99,7 @@
     "react/no-is-mounted": ["error"],
     "react/no-unknown-property": ["error"],
     "react/prefer-es6-class": ["error", "always"],
-    "react/prop-types": "error",
+    "react/prop-types": "off",
     "valid-jsdoc": ["off"],
     "yoda": ["error"],
     "spaced-comment": ["error", "always", {
