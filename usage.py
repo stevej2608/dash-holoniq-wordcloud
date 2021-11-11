@@ -5,7 +5,7 @@ from app import create_app, serve_app
 app = create_app()
 
 security_data = [
-    ["Equity", 74],
+    ["Equity", 74, "Zillions of equity based funds"],
     ["Bond", 45],
     ["Global", 30],
     ["Sector Equity", 17],
@@ -155,6 +155,7 @@ app.layout = html.Div([
             rotateRatio=0.5,
             shrinkToFit=True,
             shape='circle',
+            hover=True
             )
         ])
     ])

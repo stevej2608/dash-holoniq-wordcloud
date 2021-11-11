@@ -36,7 +36,7 @@ class WordHoverBox extends PureComponent {
       height: dimension.h / dppx + 'px'
     }
 
-    const tooltip = `${item[0]} (${item[1]})`
+    const tooltip = item.length > 2 ? item[2] : `${item[0]} (${item[1]})`
 
     this.setState({hidden, boxCss, tooltip})
   }
@@ -83,7 +83,7 @@ export default class DashTagcloud extends PureComponent {
   }
 
   renderWordCloud() {
-    const { width, height, ...options } = this.props;
+    const { width, height, hover, ...options } = this.props;
     if (WordCloudJS.isSupported) {
 
       // https://github.com/timdream/wordcloud2.js/issues/138
@@ -92,7 +92,9 @@ export default class DashTagcloud extends PureComponent {
         seedRandom('wordcloud2', { global: true });
       }
 
-      options.hover = this.hover_box.current.drawBox
+      if (hover) {
+        options.hover = this.hover_box.current.drawBox
+      }
 
       WordCloudJS(this.canvas.current, { ...options });
     }
@@ -121,7 +123,8 @@ export default class DashTagcloud extends PureComponent {
 }
 
 DashTagcloud.defaultProps = {
-  dppx : 1
+  dppx : 1,
+  hover: false
 };
 
 // https://github.com/timdream/wordcloud2.js/blob/gh-pages/API.md
@@ -331,6 +334,13 @@ DashTagcloud.propTypes = {
 
   // Events
 
+  // Hover
+
+  /**
+   * Set true to enable hover and tooltips
+   */
+
+  hover: PropTypes.bool,
 
   /**
     * The ID used to identify this component in Dash callbacks.
