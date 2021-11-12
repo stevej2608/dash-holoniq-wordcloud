@@ -42,7 +42,7 @@ app.layout = html.Div([
 ```
 ### Features
 
-**DashWordcloud** supports the extensive wordcloud [API].
+**DashWordcloud** supports the wordcloud [API].
 
 * Hover-over word highlighting and word tooltips are supported.
 * Word *onClick* events are reported to Dash and can be used in Dash callbacks
@@ -56,11 +56,11 @@ configured directly from python.
 
 The default word-hover and tooltip styling is embedded in the component. This
 can be overriden by adding a custom style definitions to your
-projects *assets/* folder. The components default *className*
-is *wc-canvas*, if needed, this can be changed by setting the python
+projects *assets/* folder. The components default class name
+is *wc-canvas*. This can, if needed, be changed by setting the python
 DashWordcloud property *className*.
 
-*default styling*
+*[default styling](./src/lib/components/css/dash-wordcloud.css)*
 ```
 .wc-canvas-hover {
   pointer-events: none;
