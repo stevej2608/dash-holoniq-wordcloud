@@ -47,9 +47,6 @@ app.layout = html.Div([
 * Hover-over word highlighting and word tooltips are supported.
 * Word *onClick* events are reported to Dash and can be used in Dash callbacks
 
-See the usage example [usage.py](./usage.py).
-
-
 ## Installation
 
 You can install *dash-wordcloud* with `pip`:
@@ -70,7 +67,9 @@ you to raise an issue. We also welcome contributions, to contribute, fork the
 repository and open a [pull request][dwc-pulls].
 
 
-[dash-homepage]: https://dash.plot.ly/
+[Plotly/Dash]: https://dash.plot.ly/
+[wordcloud]: https://github.com/timdream/wordcloud2.js
+[API]: https://github.com/timdream/wordcloud2.js/blob/gh-pages/API.md
 [dwc-repo]: https://github.com/stevej2608/dash-wordcloud
 [docs-homepage]: https://github.com/stevej2608/dash-wordcloud/blob/master/README.md
 [dwc-pulls]: https://github.com/stevej2608/dash-wordcloud/pulls
