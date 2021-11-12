@@ -52,9 +52,10 @@ class WordHoverBox extends PureComponent {
   }
 
   render() {
+    const className = this.props.className
     return (
-      <div id="wc-canvas-hover" hidden={this.state.hidden} style={this.state.boxCss}>
-        <span id="wc-canvas-hover-label">{this.state.tooltip}</span>
+      <div className={className} hidden={this.state.hidden} style={this.state.boxCss}>
+        <span className={className + "-label"}>{this.state.tooltip}</span>
       </div>
     )
   }
@@ -156,16 +157,18 @@ export default class DashTagcloud extends PureComponent {
   render() {
     // console.log('DashTagcloud.render')
     if (WordCloudJS.isSupported) {
-      const { width, height, style} = this.props;
+      const { width, height, style, className, id} = this.props;
       return (
         <div>
-          <WordHoverBox ref={this.hover_box} />
+          <WordHoverBox className={className + "-hover"} ref={this.hover_box} />
           <canvas
+            id={id}
             ref={this.canvas}
             style={{...style}}
             width={width}
             height={height}
             onMouseOut={this.onMouseOut}
+            className={className}
           />
         </div>
       );
@@ -180,6 +183,7 @@ DashTagcloud.defaultProps = {
   dppx: 1,
   hover: false,
   click: [],
+  className: "wc-canvas"
 };
 
 // https://github.com/timdream/wordcloud2.js/blob/gh-pages/API.md

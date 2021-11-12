@@ -23,7 +23,7 @@ body {
   color: white;
 }
 
-#wc-canvas-hover {
+.wc-canvas-hover {
   pointer-events: none;
   position: absolute;
   box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.5);
@@ -31,7 +31,7 @@ body {
   cursor: pointer;
 }
 
-#wc-canvas-hover-label {
+.wc-canvas-hover-label {
   position: absolute;
   top: 100%;
   left: 0;

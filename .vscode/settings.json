@@ -10,10 +10,11 @@
   "python.linting.pylintEnabled": true,
 
   "files.watcherExclude": {
-    "**/.venv/**": true,
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
     "**/node_modules/**": true,
     "**/__pycache__/*/**": true,
-    "**/tmp/*/**": true
+    "**/tmp/**": true
   },
   "python.formatting.provider": "autopep8",
   "remote.localPortHost": "allInterfaces",
