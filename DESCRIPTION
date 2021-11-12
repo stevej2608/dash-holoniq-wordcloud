@@ -1,4 +1,4 @@
-Package: dashTagcloud
+Package: dashWordcloud
 Title: tag/word cloud, ses the wonderful d3-cloud under the hood
 Version: 0.0.1
 Description: tag/word cloud, ses the wonderful d3-cloud under the hood

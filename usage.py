@@ -1,6 +1,6 @@
 from  dash import html
 from dash.dependencies import Input, Output
-from dash_tagcloud import DashTagcloud
+from dash_wordcloud import DashWordcloud
 
 from app import create_app, serve_app
 
@@ -144,8 +144,8 @@ def normalise(lst, vmax=50, vmin=16):
 
 app.layout = html.Div([
     html.Header([
-        html.H2('Dash Tag Cloud'),
-        DashTagcloud(
+        html.H2('Dash Word Cloud'),
+        DashWordcloud(
             id='cloud',
             list=normalise(security_data),
             width=600, height=400,

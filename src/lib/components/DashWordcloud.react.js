@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import WordCloudJS from 'wordcloud';
 import seedRandom from 'seedrandom';
 
-import "./css/dash-tagcloud.css"
+import "./css/dash-wordcloud.css"
 
 /**
  * Support component, provides hover capability & tooltip display
@@ -69,11 +69,11 @@ class WordHoverBox extends PureComponent {
  * See https://github.com/timdream/wordcloud2.js
  */
 
-export default class DashTagcloud extends PureComponent {
+export default class DashWordcloud extends PureComponent {
 
   constructor(props) {
     super(props);
-    // console.log('DashTagcloud.constructor')
+    // console.log('DashWordcloud.constructor')
 
     this.renderWordCloud = this.renderWordCloud.bind(this)
     this.wordcloudClick = this.wordcloudClick.bind(this)
@@ -85,7 +85,7 @@ export default class DashTagcloud extends PureComponent {
 
   wordcloudClick(item) {
     const { setProps } = this.props;
-    // console.log('DashTagcloud.wordcloudClick %s', JSON.stringify(item))
+    // console.log('DashWordcloud.wordcloudClick %s', JSON.stringify(item))
     const click = [...item]
     setProps({ click })
   }
@@ -100,7 +100,7 @@ export default class DashTagcloud extends PureComponent {
   componentDidMount() {
     const { current } = this.canvas;
     const _this = this
-    // console.log('DashTagcloud.componentDidMount')
+    // console.log('DashWordcloud.componentDidMount')
 
     if (current) {
       this.renderWordCloud();
@@ -110,7 +110,7 @@ export default class DashTagcloud extends PureComponent {
 
   componentDidUpdate(prevProps) {
 
-    // console.log('DashTagcloud.componentDidUpdate')
+    // console.log('DashWordcloud.componentDidUpdate')
 
     function getOptions(props) {
       const { click, children, loading_state, setProps, ...options } = props;
@@ -129,7 +129,7 @@ export default class DashTagcloud extends PureComponent {
   componentWillUnmount() {
     const { current } = this.canvas;
 
-    // console.log('DashTagcloud.componentWillUnmount')
+    // console.log('DashWordcloud.componentWillUnmount')
 
     if (current) {
       current.removeEventListener('click', this.wordcloudclick)
@@ -157,7 +157,7 @@ export default class DashTagcloud extends PureComponent {
   }
 
   render() {
-    // console.log('DashTagcloud.render')
+    // console.log('DashWordcloud.render')
     if (WordCloudJS.isSupported) {
       const { width, height, style, className, id} = this.props;
       return (
@@ -181,7 +181,7 @@ export default class DashTagcloud extends PureComponent {
 
 }
 
-DashTagcloud.defaultProps = {
+DashWordcloud.defaultProps = {
   dppx: 1,
   hover: false,
   click: [],
@@ -190,7 +190,7 @@ DashTagcloud.defaultProps = {
 
 // https://github.com/timdream/wordcloud2.js/blob/gh-pages/API.md
 
-DashTagcloud.propTypes = {
+DashWordcloud.propTypes = {
 
   /**
    * The device pixel density

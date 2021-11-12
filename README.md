@@ -1,15 +1,15 @@
-## dash tagcloud
+## dash wordcloud
 
-![](docs/img/dash-tag-cloud.png)
+![](docs/img/dash-wordcloud.png)
 
 This project is [Plotly/Dash] wrapper for for the highly configurable [wordcloud]. **[wordcloud]** has an extensive [API] most of which is available to Dash users.
 
 ### Usage
 
-    pip install dash-tagcloud
+    pip install dash-wordcloud
 
 ```
-from dash_tagcloud import DashTagcloud
+from dash_wordcloud import DashWordcloud
 
 security_data = [
     ["Equity", 74, "Zillions of equity based funds"],
@@ -23,8 +23,8 @@ security_data = [
 
 app.layout = html.Div([
     html.Div([
-        DashTagcloud(
-            id='tagcloud',
+        DashWordcloud(
+            id='wordcloud',
             list=security_data,
             width=300, height=200,
             gridSize=16,
@@ -41,7 +41,7 @@ app.layout = html.Div([
 
 ```
 
-Hover-over word highlighting and tooltips are supported, see the
+Hover over word highlighting and word tooltips are supported, see the
 example [usage.py](./usage.py).
 
 ### CSS Styling
@@ -49,7 +49,7 @@ example [usage.py](./usage.py).
 Default css styling is embedded in the component. This can be overriden by
 adding custom style definitions to your projects *assets/* folder. The
 components default *className* is *wc-canvas*, if needed, this can be changed by
-setting the python DashTagcloud property *className*.
+setting the python DashWordcloud property *className*.
 
 *default styling*
 ```
@@ -93,7 +93,7 @@ In a terminal window start the dash application:
 
 Select debugger launch *1: JS Browser* and press F5. The chrome browser
 will open and display your application. Enter breakpoints in the source
-code eg *./src/lib/components/DashTagcloud.react.js* as required.
+code eg *./src/lib/components/DashWordcloud.react.js* as required.
 
 ### Build the project
 
@@ -104,11 +104,11 @@ To create a tarball, first change the release version in package.json, then:
 
     python setup.py sdist bdist_wheel
 
-The tarball is in *dist/dash_tagcloud-<version>.tar.gz*
+The tarball is in *dist/dash_wordcloud-<version>.tar.gz*
 
 To install the tarball in a dash project:
 
-    pip install dash_tagcloud-<version>.tar.gz
+    pip install dash_wordcloud-<version>.tar.gz
 
 ### Publish
 

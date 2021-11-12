@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
-import DashTagcloud from './components/DashTagcloud.react';
+import DashWordcloud from './components/DashWordcloud.react';
 
 export {
-    DashTagcloud
+    DashWordcloud
 };

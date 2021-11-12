@@ -1,5 +1,5 @@
 {
-  "name": "dash_tagcloud",
+  "name": "dash_wordcloud",
   "version": "0.0.1",
   "description": "tag/word cloud, ses the wonderful d3-cloud under the hood",
   "main": "build/index.js",
@@ -8,12 +8,12 @@
     "validate-init": "python _validate_init.py",
     "prepublishOnly": "npm run validate-init",
     "build:js": "webpack --mode production && webpack --mode development",
-    "build:backends": "dash-generate-components ./src/lib/components dash_tagcloud -p package-info.json --r-prefix '' --jl-prefix ''",
+    "build:backends": "dash-generate-components ./src/lib/components dash_wordcloud -p package-info.json --r-prefix '' --jl-prefix ''",
     "build:backends-activated": "(. venv/bin/activate || venv\\scripts\\activate && npm run build:py_and_r)",
     "build": "npm run build:js && npm run build:backends",
     "build:activated": "npm run build:js && npm run build:backends-activated",
     "clean:py": "find . -type d -name __pycache__ -prune -exec rm -fr {} \\;",
-    "clean:js": "rm -f NAMESPACE && rm -rf src/jl R deps inst && find dash_tagcloud ! -name '__init__.py' -type f -exec rm -f {} +",
+    "clean:js": "rm -f NAMESPACE && rm -rf src/jl R deps inst && find dash_wordcloud ! -name '__init__.py' -type f -exec rm -f {} +",
     "clean": "npm run clean:js && npm run clean:py && rm -rf ./man/* && rm -f src/*.jl && rm -rf dist/*"
   },
   "author": "Steve Jones <jonesst2608@gmail.com>",
