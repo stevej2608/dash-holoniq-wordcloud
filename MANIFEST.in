@@ -6,6 +6,7 @@ include dash_wordcloud/*-shared.js
 include dash_wordcloud/*-shared.js.map
 include dash_wordcloud/metadata.json
 include dash_wordcloud/package-info.json
+include landing-page.md
 include README.md
 include LICENSE
 include package.json
