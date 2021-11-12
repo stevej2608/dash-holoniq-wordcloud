@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import WordCloudJS from 'wordcloud';
 import seedRandom from 'seedrandom';
 
+import "./css/dash-tagcloud.css"
+
 /**
  * Support component, provides hover capability & tooltip display
  */
