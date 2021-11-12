@@ -44,22 +44,16 @@ app.layout = html.Div([
 Hover-over word highlighting and tooltips are supported, see the
 example [usage.py](./usage.py).
 
-Style/CSS support. Add custom style definitions to the *assets/* folder. The following
-css example is taken from the [wordcloud] project.
+### CSS Styling
 
-*[./assets/style.css](assets/style.css)*
+Default css styling is embedded in the component. This can be overriden by
+adding custom style definitions to your projects *assets/* folder. The
+components default *className* is *wc-canvas*, if needed, this can be changed by
+setting the python DashTagcloud property *className*.
+
+*default styling*
 ```
-body {
- 	font-family: sans-serif;
-	-webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  font-smooth: always;
- 	margin: 0;
- 	padding: 0;
-}
-
-#wc-canvas-hover {
+.wc-canvas-hover {
   pointer-events: none;
   position: absolute;
   box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.5);
@@ -67,7 +61,7 @@ body {
   cursor: pointer;
 }
 
-#wc-canvas-hover-label {
+.wc-canvas-hover-label {
   position: absolute;
   top: 100%;
   left: 0;
@@ -76,7 +70,8 @@ body {
   margin-top: 6px;
   padding: 0 0.5em;
   border-radius: 0.5em;
-  white-space: nowrap; }
+  white-space: nowrap;
+}
 ```
 
 ### Debugging the python demo `usage.py`
