@@ -9,8 +9,8 @@
     // then launch debugger
 
     {
-      "type": "pwa-chrome",
       "name": "1. Debug component JS in Browser",
+      "type": "pwa-chrome",
       "request": "launch",
       "url": "http://default:8070",
       "sourceMaps": true,

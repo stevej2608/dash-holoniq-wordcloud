@@ -1,8 +1,8 @@
-## dash wordcloud
+## dash-wordcloud
 
 ![](docs/img/dash-wordcloud.png)
 
-This project is [Plotly/Dash] wrapper for for the highly configurable [wordcloud]. **[wordcloud]** has an extensive [API] most of which is available to Dash users.
+This project is [Plotly/Dash] wrapper for for the highly configurable [wordcloud].
 
 ### Usage
 
@@ -40,16 +40,25 @@ app.layout = html.Div([
     ])
 
 ```
+### Features
 
-Hover over word highlighting and word tooltips are supported, see the
-example [usage.py](./usage.py).
+**DashWordcloud** supports the extensive wordcloud [API].
 
-### CSS Styling
+* Hover-over word highlighting and word tooltips are supported.
+* Word *onClick* events are reported to Dash and can be used in Dash callbacks
 
-Default css styling is embedded in the component. This can be overriden by
-adding custom style definitions to your projects *assets/* folder. The
-components default *className* is *wc-canvas*, if needed, this can be changed by
-setting the python DashWordcloud property *className*.
+See the usage example [usage.py](./usage.py).
+
+### Styling
+
+The extensive component [API] allows the cloud layout to be
+configured directly from python.
+
+The default word-hover and tooltip styling is embedded in the component. This
+can be overriden by adding a custom style definitions to your
+projects *assets/* folder. The components default *className*
+is *wc-canvas*, if needed, this can be changed by setting the python
+DashWordcloud property *className*.
 
 *default styling*
 ```
@@ -79,7 +88,7 @@ setting the python DashWordcloud property *className*.
 In VSCODE select `2. Debug usage.py` from the launch options and press `F5` to launch the
 Flask/Dash development server.
 
-Open [http://localhost:8050](http://localhost:8050)
+Open [http://localhost:8070](http://localhost:8070)
 
 Set breakpoints as required.
 
