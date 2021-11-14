@@ -6,11 +6,6 @@
 		"dockerfile": "Dockerfile",
 	},
 
-  "containerEnv": {
-    "HOST_HOSTNAME": "default",
-    "HOST_HOSTPORT": "8070"
-  },
-
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
 		"python.pythonPath": "/usr/local/bin/python",
@@ -30,18 +25,26 @@
 
 
   "runArgs": [
-    "--name=${localWorkspaceFolderBasename}"
-  ],
+    "--name=${localWorkspaceFolderBasename}",
+    "--add-host=debian-server:192.168.2.196",
+    "--env-file",".devcontainer/devcontainer.env"
+],
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
     "ms-python.python",
-    "ms-python.vscode-pylance"
+    "ms-python.vscode-pylance",
+    "dbaeumer.vscode-eslint",
+    "ritwickdey.liveserver",
+    "streetsidesoftware.code-spell-checker"
 	],
 
-  "appPort": "8070:8070",
-  "postCreateCommand": "chmod +x .devcontainer/init.sh && .devcontainer/init.sh",
+  // appPort, The LHS port must match the value of $HOSTPORT defined
+  // in .devcontainer/devcontainer.env
 
+  "appPort": "8070:8050",
+
+  "postCreateCommand": "chmod +x .devcontainer/init.sh && .devcontainer/init.sh",
 
   "workspaceFolder": "/${localWorkspaceFolderBasename}",
 	"workspaceMount": "source=/workspaces/${localWorkspaceFolderBasename},target=/${localWorkspaceFolderBasename},type=bind,consistency=cached",

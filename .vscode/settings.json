@@ -18,5 +18,8 @@
   },
   "python.formatting.provider": "autopep8",
   "remote.localPortHost": "allInterfaces",
-  "python.linting.enabled": true
+  "python.linting.enabled": true,
+  "cSpell.ignoreWords": [
+    "devcontainer"
+  ]
 }
