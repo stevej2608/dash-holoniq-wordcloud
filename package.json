@@ -1,6 +1,6 @@
 {
   "name": "dash_holoniq_wordcloud",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "tag/word cloud, ses the wonderful d3-cloud under the hood",
   "main": "build/index.js",
   "scripts": {
