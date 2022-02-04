@@ -18,6 +18,7 @@ setup(
     name=package_name,
     version=package["version"],
     author=package['author'],
+    url='https://github.com/stevej2608/dash-wordcloud',
     packages=[package_name],
     include_package_data=True,
     license=package['license'],
