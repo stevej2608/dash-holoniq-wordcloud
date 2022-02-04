@@ -1,6 +1,6 @@
 
-name = "DashWordcloud"
-uuid = "1b08a953-4be3-4667-9a23-876b06c30f6b"
+name = "DashHoloniqWordcloud"
+uuid = "1b08a953-4be3-4667-9a23-7ebaf36ea0be"
 authors = ["Steve Jones <jonesst2608@gmail.com>"]
 version = "0.0.1"
 

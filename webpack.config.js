@@ -113,7 +113,7 @@ module.exports = (env, argv) => {
                         chunks: 'all',
                         minSize: 0,
                         minChunks: 2,
-                        name: 'dash_wordcloud-shared'
+                        name: 'dash_holoniq_wordcloud-shared'
                     }
                 }
             }

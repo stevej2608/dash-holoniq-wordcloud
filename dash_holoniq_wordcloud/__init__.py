@@ -66,13 +66,13 @@ _js_dist.extend(
 _js_dist.extend(
     [
         {
-            'relative_package_path': 'dash_wordcloud.min.js',
-            'dev_package_path': 'dash_wordcloud.dev.js',
+            'relative_package_path': 'dash_holoniq_wordcloud.min.js',
+            'dev_package_path': 'dash_holoniq_wordcloud.dev.js',
             'namespace': package_name
         },
         {
-            'relative_package_path': 'dash_wordcloud.min.js.map',
-            'dev_package_path': 'dash_wordcloud.dev.js.map',
+            'relative_package_path': 'dash_holoniq_wordcloud.min.js.map',
+            'dev_package_path': 'dash_holoniq_wordcloud.dev.js.map',
 
             'namespace': package_name,
             'dynamic': True

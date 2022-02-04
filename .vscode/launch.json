@@ -16,7 +16,7 @@
       "sourceMaps": true,
       "webRoot": "${workspaceFolder}",
       "resolveSourceMapLocations": [
-        "dash_wordcloud/**/*.js"
+        "dash_holoniq_wordcloud/**/*.js"
       ],
     },
 
