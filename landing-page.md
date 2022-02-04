@@ -1,6 +1,4 @@
-# dash-holoniq-wordcloud
-
-![](https://raw.githubusercontent.com/stevej2608/dash-holoniq-wordcloud/main/docs/img/dash-holoniq-wordcloud.png)
+![](https://raw.githubusercontent.com/stevej2608/dash-holoniq-wordcloud/master/docs/img/dash-holoniq-wordcloud.png)
 
 This project is [Plotly/Dash] wrapper for for the highly configurable [wordcloud].
 
