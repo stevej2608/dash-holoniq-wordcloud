@@ -1,15 +1,15 @@
-## dash-wordcloud
+## dash-holoniq-wordcloud
 
-![](docs/img/dash-wordcloud.png)
+![](docs/img/dash-holoniq-wordcloud.png)
 
 This project is [Plotly/Dash] wrapper for for the highly configurable [wordcloud].
 
 ### Usage
 
-    pip install dash-wordcloud
+    pip install dash-holoniq-wordcloud
 
 ```
-from dash_wordcloud import DashWordcloud
+from dash_holoniq_wordcloud import DashWordcloud
 
 security_data = [
     ["Equity", 74, "Zillions of equity based funds"],
@@ -60,7 +60,7 @@ projects *assets/* folder. The components default class name
 is *wc-canvas*. This can, if needed, be changed by setting the python
 DashWordcloud property *className*.
 
-*[default styling](./src/lib/components/css/dash-wordcloud.css)*
+*[default styling](./src/lib/components/css/dash-holoniq-wordcloud.css)*
 ```
 .wc-canvas-hover {
   pointer-events: none;
@@ -113,11 +113,11 @@ To create a tarball, first change the release version in package.json, then:
 
     python setup.py sdist bdist_wheel
 
-The tarball is in *dist/dash_wordcloud-<version>.tar.gz*
+The tarball is in *dist/dash_holoniq_wordcloud-<version>.tar.gz*
 
 To install the tarball in a dash project:
 
-    pip install dash_wordcloud-<version>.tar.gz
+    pip install dash_holoniq_wordcloud-<version>.tar.gz
 
 ### Publish
 

@@ -1,6 +1,6 @@
 from  dash import html
 from dash.dependencies import Input, Output
-from dash_wordcloud import DashWordcloud
+from dash_holoniq_wordcloud import DashWordcloud
 
 from app import create_app, serve_app
 

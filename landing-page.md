@@ -1,15 +1,15 @@
-# dash-wordcloud
+# dash-holoniq-wordcloud
 
-![](https://raw.githubusercontent.com/stevej2608/dash-wordcloud/main/docs/img/dash-wordcloud.png)
+![](https://raw.githubusercontent.com/stevej2608/dash-holoniq-wordcloud/main/docs/img/dash-holoniq-wordcloud.png)
 
 This project is [Plotly/Dash] wrapper for for the highly configurable [wordcloud].
 
 ### Usage
 
-    pip install dash-wordcloud
+    pip install dash-holoniq-wordcloud
 
 ```
-from dash_wordcloud import DashWordcloud
+from dash_holoniq_wordcloud import DashWordcloud
 
 security_data = [
     ["Equity", 74, "Zillions of equity based funds"],
@@ -49,10 +49,10 @@ app.layout = html.Div([
 
 ## Installation
 
-You can install *dash-wordcloud* with `pip`:
+You can install *dash-holoniq-wordcloud* with `pip`:
 
 ```
-pip install dash-wordcloud
+pip install dash-holoniq-wordcloud
 ```
 
 ## Documentation
@@ -61,7 +61,7 @@ Head over to the [*README*][docs-homepage] for more details.
 
 ## Contributing
 
-The source code for *dash-wordcloud* is available
+The source code for *dash-holoniq-wordcloud* is available
 [on GitHub][dwc-repo]. If you find a bug or something is unclear, we encourage
 you to raise an issue. We also welcome contributions, to contribute, fork the
 repository and open a [pull request][dwc-pulls].
@@ -70,6 +70,6 @@ repository and open a [pull request][dwc-pulls].
 [Plotly/Dash]: https://dash.plot.ly/
 [wordcloud]: https://github.com/timdream/wordcloud2.js
 [API]: https://github.com/timdream/wordcloud2.js/blob/gh-pages/API.md
-[dwc-repo]: https://github.com/stevej2608/dash-wordcloud
-[docs-homepage]: https://github.com/stevej2608/dash-wordcloud/blob/master/README.md
-[dwc-pulls]: https://github.com/stevej2608/dash-wordcloud/pulls
+[dwc-repo]: https://github.com/stevej2608/dash-holoniq-wordcloud
+[docs-homepage]: https://github.com/stevej2608/dash-holoniq-wordcloud/blob/master/README.md
+[dwc-pulls]: https://github.com/stevej2608/dash-holoniq-wordcloud/pulls
