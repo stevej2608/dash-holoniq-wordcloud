@@ -106,6 +106,7 @@ code eg *./src/lib/components/DashWordcloud.react.js* as required.
 
 ### Build the project
 
+    npm install
     npm run clean
     npm run build
 
