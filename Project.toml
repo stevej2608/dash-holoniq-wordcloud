@@ -2,7 +2,7 @@
 name = "DashHoloniqWordcloud"
 uuid = "1b08a953-4be3-4667-9a23-7ebaf36ea0be"
 authors = ["Steve Jones <jonesst2608@gmail.com>"]
-version = "0.0.3"
+version = "0.0.4"
 
 [deps]
 Dash = "1b08a953-4be3-4667-9a23-3db579824955"
